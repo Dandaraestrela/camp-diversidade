@@ -1,9 +1,14 @@
 import './App.css';
+import { ThemeProvider } from 'styled-components';
+import { COLORS } from './globalStyles';
+import Routes from './Routes';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <ThemeProvider theme={{ colors: COLORS }}>
+     <Routes />
+    </ThemeProvider>
+    
   );
 }
 
