@@ -2,17 +2,22 @@ import styled from "styled-components";
 
 export const StyledHeaderWrapper = styled.div`
   display: flex;
-  flex: row;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 2rem;
   width: 100%;
 
-  img{
+  img {
     width: 90px;
     height: 40px;
     object-fit: cover;
   }
+  @media (max-width: 960px) {
+      flex-direction:column;
+      height: 100%;
+      justify-content: center;
+    }
 `;
 
 export const StyledTabsWrapper = styled.div`
@@ -20,9 +25,21 @@ export const StyledTabsWrapper = styled.div`
   flex: row;
   align-items: center;
   justify-content: center;
-  h3{
+  h3 {
     font-size: 16px;
     color: black;
   }
+  button {
+    text-decoration: none;
+    padding: 4px 8px;
+    margin-right: 2rem;
+    background: none;
+    border: none;
+    font-size: 16px;
+    @media (max-width: 960px) {
+      margin-right: 4px;
+      margin-top: 1rem;
+      align-self: center;
+    }
+  }
 `;
-

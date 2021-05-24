@@ -1,6 +1,6 @@
-import { StyledHomeWrapper, StyledHomeContent, StyledInfo } from "./styled";
+import { StyledHomeWrapper, StyledHomeContent, StyledInfo, StyledHomeImg } from "./styled";
 import { Header } from "../../components/Header";
-import Logo from '../../assets/Logo.png';
+import Principal from '../../assets/Principal.svg';
 
 export const Home = () => {
   return (
@@ -14,13 +14,12 @@ export const Home = () => {
               Diante de uma imensa diversidade de cabelos em nosso país: desde o
               mais liso até o mais crespo, neste espaço você tem a liberdade que
               precisa para explorar o tipo de cabelo que você possui e ainda
-              saber como cuidar dele de maneira saudável e dinâmica. Vamos lá
-              (re)descobrir essa cabeleira juntos?
+              saber como cuidar dele de maneira saudável e dinâmica. <strong> Vamos lá
+              (re)descobrir essa cabeleira juntos? </strong>
             </h2>
+            <button>Iniciar minha jornada</button>
           </StyledInfo>
-          <StyledInfo>
-              <img alt="principal" src={Logo}/>
-          </StyledInfo>
+          <StyledHomeImg alt="boas-vindas" src={Principal}/>
         </StyledHomeContent>
       </StyledHomeWrapper>
     </>
