@@ -10,8 +10,9 @@ export const StyledQuizHWrapper = styled.div`
     width: 30%;
     font-family: "Poppins", sans-serif;
     font-weight: lighter;
-    margin-top: 4rem;
-    font-size: 48px;
+    line-height: 57px;
+    margin-top: 0;
+    font-size: 40px;
     margin-bottom: 16px;
   }
   h2 {
@@ -34,7 +35,7 @@ export const StyledQuizSteps = styled.div`
   flex-direction: row;
   width: 100%;
   margin-bottom: 16px;
-  
+
   button {
     border: none;
     cursor: pointer;
@@ -85,20 +86,19 @@ export const StyledResultContent = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-
 `;
 
 export const StyledInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 4rem;
+  margin-top: 0;
   margin-bottom: 0;
   max-width: 28rem;
   h4 {
     font-family: "Poppins", sans-serif;
     font-weight: lighter;
-    font-size: 48px;
+    font-size: 40px;
     line-height: 57px;
     color: ${(props) => props.theme.colors.primaryBlue};
     margin: 0;

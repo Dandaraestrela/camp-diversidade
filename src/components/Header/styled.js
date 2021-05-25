@@ -7,6 +7,7 @@ export const StyledHeaderWrapper = styled.div`
   align-items: center;
   height: 2rem;
   width: 100%;
+  margin-bottom: 4rem;
 
   img {
     width: 90px;

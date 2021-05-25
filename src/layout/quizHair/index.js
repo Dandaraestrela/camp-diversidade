@@ -18,18 +18,18 @@ import Liso from "../../assets/Liso.svg";
 import axios from "axios";
 
 const curvaturas = [
-  { label: "1A", imagem: "1A.svg" },
-  { label: "1B", imagem: "1B.svg" },
-  { label: "1C", imagem: "1C.svg" },
-  { label: "2A", imagem: "2A.svg" },
-  { label: "2B", imagem: "2B.svg" },
-  { label: "2C", imagem: "2C.svg" },
-  { label: "3A", imagem: "3A.svg" },
-  { label: "3B", imagem: "3B.svg" },
-  { label: "3C", imagem: "3C.svg" },
-  { label: "4A", imagem: "4A.svg" },
-  { label: "4B", imagem: "4B.svg" },
-  { label: "4C", imagem: "4C.svg" },
+  { label: "1A", normal: "1A.svg" },
+  { label: "1B", normal: "1B.svg" },
+  { label: "1C", normal: "1C.svg" },
+  { label: "2A", normal: "2A.svg" },
+  { label: "2B", normal: "2B.svg" },
+  { label: "2C", normal: "2C.svg" },
+  { label: "3A", normal: "3A.svg" },
+  { label: "3B", normal: "3B.svg" },
+  { label: "3C", normal: "3C.svg" },
+  { label: "4A", normal: "4A.svg" },
+  { label: "4B", normal: "4B.svg" },
+  { label: "4C", normal: "4C.svg" },
 ];
 const tipos = [
   { label: "Normal", imagem: "Normal.svg" },
@@ -75,7 +75,7 @@ export const QuizHair = (props) => {
   const { register, handleSubmit, setValue, watch } = useForm({
     defaultValues: {
       curvatura: "",
-      tipos: [],
+      tipo: "",
       quimicas: [],
       caracteristicas: [],
       produtos: [],
@@ -85,41 +85,105 @@ export const QuizHair = (props) => {
   const [currentStep, setCurrentStep] = useState("Curvatura");
   const watchFields = watch();
 
-  const [quizRespostas, setQuizrespostas] = useState();
+  const [curvatura, setCurvatura] = useState(0);
+  const [tipoCabelo, setTipoCabelo] = useState(0);
+  
+  function atualizaCurvaturaTipo(curvaturaSelecionada, tipoSelecionado) {
+    switch (curvaturaSelecionada) {
+      case "1A":
+        console.log("1A");
+        break;
+      case "1B":
+        console.log("1B");
+        break;
+      case "1C":
+        console.log("1C");
+        break;
+      case "2A":
+        console.log("1A");
+        break;
+      case "2B":
+        console.log("2B");
+        break;
+      case "2C":
+        console.log("2C");
+        break;
+      case "3A":
+        console.log("3A");
+        break;
+      case "3B":
+        console.log("3B");
+        break;
+      case "3C":
+        console.log("3C");
+        break;
+      case "4A":
+        console.log("4A");
+        break;
+      case "4B":
+        console.log("4B");
+        break;
+      case "4C":
+        console.log("4C");
+        break;
+      default:
+        console.log("não achou");
+    }
+    switch (tipoSelecionado) {
+      case "Normal":
+        console.log("normal");
+        break;
+      case "Seco":
+        console.log("normal");
+        break;
+      case "Oleoso":
+        console.log("normal");
+        break;
+      case "Misto":
+        console.log("normal");
+        break;
+      default:
+        console.log("nenhum");
+    }
+  }
 
   const onSubmit = (data) => {
-    setQuizrespostas(data);
+    //atualizaCurvaturaTipo(data.curvatura.label, data.tipo.label);
+    console.log(data);
     setCurrentStep("Resultado");
-    axios.post("http://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario", {
-      curvaturaCabelo: 0,
-      situacaoCabelo: 0,
-      temAlisamento: true,
-      temTintura: true,
-      temDescoloracao: true,
-      temCaspa: true,
-      temQueda: true,
-      temFiosElasticos: true,
-      produtoEhVegano: true,
-      produtoEhCrueltyfree: true,
-      produtoEhNoPooLowPoo: true,
-      produtoNaoTemParabenoESimilares: true,
-      produtoEhNatural: true,
-      produtoEhAntiqueda: true,
-      produtoEhAntifrizz: true,
-      produtoEhAntinos: true,
-      produtoDahBrilho: true,
-      produtoDahMaciez: true,
-      produtoDahHidratacao: true,
-      produtoDahDefinicao: true,
-      produtoDahCrescimento: true,
-      produtoDahVolume: true,
-      produtoControlaOleosidade: true,
-      produtoControlaVolume: true,
-    }).then((response) => {
-      console.log(response.data.id)
-    }).catch((error) =>{
-      console.log('deuerro')
-    });
+    /*axios
+      .post("http://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario", {
+        curvaturaCabelo: 0,
+        situacaoCabelo: 0,
+        temAlisamento: true,
+        temTintura: true,
+        temDescoloracao: true,
+        temCaspa: true,
+        temQueda: true,
+        temFiosElasticos: true,
+        produtoEhVegano: true,
+        produtoEhCrueltyfree: true,
+        produtoEhNoPooLowPoo: true,
+        produtoNaoTemParabenoESimilares: true,
+        produtoEhNatural: true,
+        produtoEhAntiqueda: true,
+        produtoEhAntifrizz: true,
+        produtoEhAntinos: true,
+        produtoDahBrilho: true,
+        produtoDahMaciez: true,
+        produtoDahHidratacao: true,
+        produtoDahDefinicao: true,
+        produtoDahCrescimento: true,
+        produtoDahVolume: true,
+        produtoControlaOleosidade: true,
+        produtoControlaVolume: true,
+      })
+      .then((response) => {
+        console.log(response.data.id);
+      })
+      .catch((error) => {
+        console.log("deuerro");
+      }); */
   };
 
   return (
@@ -245,39 +309,18 @@ export const QuizHair = (props) => {
                       key={tipoTipos.label}
                       option={tipoTipos.label}
                       image={tipoTipos.imagem}
-                      onClick={() => {
-                        if (watchFields.tipos) {
-                          if (watchFields.tipos.includes(tipoTipos)) {
-                            setValue(
-                              "tipos",
-                              watchFields.tipos.filter(
-                                (item) => item !== tipoTipos
-                              )
-                            );
-                          } else {
-                            setValue("tipos", [
-                              ...watchFields.tipos,
-                              tipoTipos,
-                            ]);
-                          }
-                        } else {
-                          setValue("tipos", [tipoTipos]);
-                        }
-                      }}
-                      selected={
-                        watchFields.tipos &&
-                        watchFields.tipos.includes(tipoTipos)
-                      }
+                      onClick={() => setValue("tipo", tipoTipos)}
+                      selected={watchFields.tipo === tipoTipos}
                     />
                   ))}
-                  <input {...register("tipos", { required: true })}></input>
+                  <input {...register("tipo", { required: true })}></input>
                 </StyledOptions>
                 <StyledFooterWrapper>
                   <h3>{currentStep}</h3>
                   <button
                     type="button"
                     disabled={
-                      !watchFields.tipos || watchFields.tipos.length === 0
+                      !watchFields.tipo || watchFields.tipo.length === 0
                     }
                     onClick={() => setCurrentStep("Químicas")}
                   >
@@ -499,7 +542,7 @@ export const QuizHair = (props) => {
                     type="submit"
                     disabled={
                       !watchFields.curvatura ||
-                      !watchFields.tipos ||
+                      !watchFields.tipo ||
                       !watchFields.quimicas ||
                       !watchFields.caracteristicas ||
                       !watchFields.produtos ||

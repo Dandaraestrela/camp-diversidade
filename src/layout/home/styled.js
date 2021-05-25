@@ -16,7 +16,7 @@ export const StyledInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 4rem;
+  margin-top: 0;
   width: 50%;
   z-index: 1;
   h1 {
@@ -24,6 +24,7 @@ export const StyledInfo = styled.div`
     font-weight: bold;
     font-size: 40px;
     margin-bottom: 0;
+    margin-top: 0;
     color: ${(props) => props.theme.colors.primaryBlue};
   }
   h2 {

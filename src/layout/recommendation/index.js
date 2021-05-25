@@ -1,16 +1,28 @@
 import { useState } from "react";
-import { StyledRecWrapper, StyledRecContent, StyledInfoType } from "./styled";
+import {
+  StyledRecWrapper,
+  StyledRecContent,
+  StyledFilters,
+  StyledInfo,
+  StyledInfoType,
+  StyledCardsWrapper,
+} from "./styled";
 import { Header } from "../../components/Header";
-import { ProductCard } from '../../components/ProductCard'
+import { ProductCard } from "../../components/ProductCard";
 
 export const Recommendation = () => {
   const [infoType, setInfoType] = useState("Produtos");
 
-  const buttonProps = (type) => {
-    const selected = (infoType === type);
+  const tabsProps = (type) => {
+    const selected = infoType === type;
     return {
-      color: selected ? "#514EDE" : "#666666",
-      borderBottom: selected ? "2px solid #514EDE" : "none",
+      fontSize: "20px",
+      color: selected ? "#0400BF" : "#666666",
+      borderBottom: selected ? "4px solid #FB9079" : "none",
+      borderRadius: "4px",
+      marginRight: "24px",
+      marginBottom: "34px",
+      padding: "4px 8px",
       fontWeight: selected ? "bold" : "normal",
     };
   };
@@ -18,25 +30,34 @@ export const Recommendation = () => {
   return (
     <StyledRecWrapper>
       <Header page="Recomendacoes" />
+      <h1>
+        Que tal <strong>cuidar</strong> do seu cabelo?
+      </h1>
       <StyledRecContent>
-        <h1>Que tal cuidar do seu cabelo hoje?</h1>
-        <StyledInfoType>
-          <button
-            onClick={() => setInfoType("Produtos")}
-            minhaProps={false}
-            style={buttonProps("Produtos")}
-          >
-            Produtos
-          </button>
-          <button
-            onClick={() => setInfoType("Dicas")}
-            minhaProps={true}
-            style={buttonProps("Dicas")}
-          >
-            Dicas
-          </button>
-        </StyledInfoType>
-        <ProductCard />
+        <StyledFilters>
+          <h1>filtros aqui</h1>
+        </StyledFilters>
+        <StyledInfo>
+          <StyledInfoType>
+            <button
+              onClick={() => setInfoType("Produtos")}
+              minhaProps={false}
+              style={tabsProps("Produtos")}
+            >
+              Produtos
+            </button>
+            <button
+              onClick={() => setInfoType("Dicas")}
+              minhaProps={true}
+              style={tabsProps("Dicas")}
+            >
+              Dicas
+            </button>
+          </StyledInfoType>
+          <StyledCardsWrapper>
+            <ProductCard />
+          </StyledCardsWrapper>
+        </StyledInfo>
       </StyledRecContent>
     </StyledRecWrapper>
   );
