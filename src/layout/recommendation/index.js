@@ -9,6 +9,23 @@ import {
 } from "./styled";
 import { Header } from "../../components/Header";
 import { ProductCard } from "../../components/ProductCard";
+import { FilterButton } from "../../components/FilterButton";
+
+const filtercategories = [
+  "Liso",
+  "Ondulado",
+  "Cacheado",
+  "Crespo",
+  "Com Tintura",
+  "Com Descoloração",
+  "Com Alisamento",
+  "Veganos",
+  "Cruelty free",
+  "No poo/Low poo",
+  "Hidratação",
+  "Volume",
+  "Controle de volume",
+];
 
 export const Recommendation = () => {
   const [infoType, setInfoType] = useState("Produtos");
@@ -26,7 +43,7 @@ export const Recommendation = () => {
       fontWeight: selected ? "bold" : "normal",
     };
   };
-
+  const [filters, setFilters] = useState([]);
   return (
     <StyledRecWrapper>
       <Header page="Recomendacoes" />
@@ -35,7 +52,20 @@ export const Recommendation = () => {
       </h1>
       <StyledRecContent>
         <StyledFilters>
-          <h1>filtros aqui</h1>
+          {filtercategories.map((category) => {
+            return(
+            <FilterButton
+              filterLabel={category}
+              onClick={() => {
+                if (filters.includes(category)) {
+                  setFilters(filters.filter((item) => item !== category));
+                }else{
+                  setFilters([...filters, category]);
+                }
+              }}
+              selected={filters.includes(category)}
+            />);
+          })}
         </StyledFilters>
         <StyledInfo>
           <StyledInfoType>

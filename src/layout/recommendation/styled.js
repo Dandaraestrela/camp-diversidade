@@ -28,7 +28,8 @@ export const StyledRecContent = styled.div`
 
 export const StyledFilters = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   @media (min-width: 800px){
     width: 30%;
   }

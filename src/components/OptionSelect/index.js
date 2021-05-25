@@ -10,7 +10,7 @@ export const OptionSelect = (props) => {
         {...props}
       >
         <StyledImage>
-          <img alt="teste" src={props.image} color="white"/>
+          <img alt="teste" src={props.selected ? props.imageSelected : props.image} color="white"/>
         </StyledImage>
 
         <StyledCategory>

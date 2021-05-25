@@ -18,57 +18,161 @@ import Liso from "../../assets/Liso.svg";
 import axios from "axios";
 
 const curvaturas = [
-  { label: "1A", normal: "1A.svg" },
-  { label: "1B", normal: "1B.svg" },
-  { label: "1C", normal: "1C.svg" },
-  { label: "2A", normal: "2A.svg" },
-  { label: "2B", normal: "2B.svg" },
-  { label: "2C", normal: "2C.svg" },
-  { label: "3A", normal: "3A.svg" },
-  { label: "3B", normal: "3B.svg" },
-  { label: "3C", normal: "3C.svg" },
-  { label: "4A", normal: "4A.svg" },
-  { label: "4B", normal: "4B.svg" },
-  { label: "4C", normal: "4C.svg" },
+  { label: "1A", imagem: "1ANormal.svg", selected: "1ASelected.svg" },
+  { label: "1B", imagem: "1BNormal.svg", selected: "1BSelected.svg" },
+  { label: "1C", imagem: "1CNormal.svg", selected: "1CSelected.svg" },
+  { label: "2A", imagem: "2ANormal.svg", selected: "2ASelected.svg" },
+  { label: "2B", imagem: "2BNormal.svg", selected: "2BSelected.svg" },
+  { label: "2C", imagem: "2CNormal.svg", selected: "2CSelected.svg" },
+  { label: "3A", imagem: "3ANormal.svg", selected: "3ASelected.svg" },
+  { label: "3B", imagem: "3BNormal.svg", selected: "3BSelected.svg" },
+  { label: "3C", imagem: "3CNormal.svg", selected: "3CSelected.svg" },
+  { label: "4A", imagem: "4ANormal.svg", selected: "4ASelected.svg" },
+  { label: "4B", imagem: "4BNormal.svg", selected: "4BSelected.svg" },
+  { label: "4C", imagem: "4CNormal.svg", selected: "4CSelected.svg" },
 ];
 const tipos = [
-  { label: "Normal", imagem: "Normal.svg" },
-  { label: "Seco", imagem: "Seco.svg" },
-  { label: "Oleoso", imagem: "Oleoso.svg" },
-  { label: "Misto", imagem: "Misto.svg" },
+  {
+    label: "Normal",
+    imagem: "normalNormal.svg",
+    selected: "normalSelected.svg",
+  },
+  { label: "Seco", imagem: "secoNormal.svg", selected: "secoSelected.svg" },
+  {
+    label: "Oleoso",
+    imagem: "oleosoNormal.svg",
+    selected: "oleosoSelected.svg",
+  },
+  { label: "Misto", imagem: "mistoNormal.svg", selected: "mistoSelected.svg" },
 ];
 const quimicas = [
-  { label: "Tintura", imagem: "Tintura.svg" },
-  { label: "Descoloração", imagem: "Descoloracao.svg" },
-  { label: "Alisamento", imagem: "Alisamento.svg" },
-  { label: "Nenhuma Quimica", imagem: "NenhumaQuimica.svg" },
+  {
+    label: "Tintura",
+    imagem: "tinturaNormal.svg",
+    selected: "tinturaSelected.svg",
+  },
+  {
+    label: "Descoloração",
+    imagem: "descoloracaoNormal.svg",
+    selected: "descoloracaoSelected.svg",
+  },
+  {
+    label: "Alisamento",
+    imagem: "alisamentoNormal.svg",
+    selected: "alisamentoSelected.svg",
+  },
+  {
+    label: "Nenhuma Quimica",
+    imagem: "nenhumaQuimicaNormal.svg",
+    selected: "nenhumaQuimicaSelected.svg",
+  },
 ];
 const caracteristicas = [
-  { label: "Dermatite", imagem: "Dermatite.svg" },
-  { label: "Caspa", imagem: "Caspa.svg" },
-  { label: "Queda dos fios", imagem: "Queda.svg" },
-  { label: "Corte químico", imagem: "Corte.svg" },
-  { label: "Fios elásticos", imagem: "Elasticos.svg" },
-  { label: "Nenhuma", imagem: "Nenhuma.svg" },
+  {
+    label: "Dermatite",
+    imagem: "dermatiteNormal.svg",
+    selected: "dermatiteSelected.svg",
+  },
+  { label: "Caspa", imagem: "caspaNormal.svg", selected: "caspaSelected.svg" },
+  {
+    label: "Queda dos fios",
+    imagem: "quedaNormal.svg",
+    selected: "quedaSelected.svg",
+  },
+  {
+    label: "Corte químico",
+    imagem: "corteQuimicoNormal.svg",
+    selected: "corteQuimicoSelected.svg",
+  },
+  {
+    label: "Fios elásticos",
+    imagem: "fioElasticoNormal.svg",
+    selected: "fioElasticoSelected.svg",
+  },
+  {
+    label: "Nenhuma",
+    imagem: "nenhumaSituacaoNormal.svg",
+    selected: "nenhumaSituacaoSelected.svg",
+  },
 ];
 const produtos = [
-  { label: "Veganos", imagem: "Veganos.svg" },
-  { label: "Adaptáveis ao meu cabelo", imagem: "Adaptaveis.svg" },
-  { label: "Cruelty free", imagem: "CrueltyFree.svg" },
-  { label: "Naturais", imagem: "naturais.svg" },
-  { label: "No poo/Low poo", imagem: "NoPoo.svg" },
-  { label: "Sem parabenos", imagem: "SemParabenos.svg" },
+  {
+    label: "Veganos",
+    imagem: "veganoNormal.svg",
+    selected: "veganoSelected.svg",
+  },
+  {
+    label: "Adaptáveis ao meu cabelo",
+    imagem: "adaptavelNormal.svg",
+    selected: "adaptavelSelected.svg",
+  },
+  {
+    label: "Cruelty free",
+    imagem: "crueltyFreeNormal.svg",
+    selected: "crueltyFreeSelected.svg",
+  },
+  {
+    label: "Naturais",
+    imagem: "naturalNormal.svg",
+    selected: "naturalSelected.svg",
+  },
+  {
+    label: "No poo/Low poo",
+    imagem: "noPooNormal.svg",
+    selected: "noPooSelected.svg",
+  },
+  {
+    label: "Sem parabenos",
+    imagem: "semParabenosNormal.svg",
+    selected: "semParabenosSelected.svg",
+  },
 ];
 const objetivos = [
-  { label: "Brilho", imagem: "Brilho.svg" },
-  { label: "Maciez e hidratação", imagem: "Maciez.svg" },
-  { label: "Definição", imagem: "Definicao.svg" },
-  { label: "Crescimento dos fios", imagem: "Crescimento.svg" },
-  { label: "Controle de oleosidade", imagem: "ControleOleosidade.svg" },
-  { label: "Antifrizz", imagem: "Antifrizz.svg" },
-  { label: "Antiquebra", imagem: ".svg" },
-  { label: "Controle do volume", imagem: "ControleVolume.svg" },
-  { label: "Volume", imagem: "Volume.svg" },
+  {
+    label: "Brilho",
+    imagem: "brilhoNormal.svg",
+    selected: "brilhoSelected.svg",
+  },
+  {
+    label: "Maciez e hidratação",
+    imagem: "maciezNormal.svg",
+    selected: "maciezSelected.svg",
+  },
+  {
+    label: "Definição",
+    imagem: "definicaoNormal.svg",
+    selected: "definicaoSelected.svg",
+  },
+  {
+    label: "Crescimento dos fios",
+    imagem: "crescimentoNormal.svg",
+    selected: "crescimentoSelected.svg",
+  },
+  {
+    label: "Controle de oleosidade",
+    imagem: "controleOleosidadeNormal.svg",
+    selected: "controleOleosidadeSelected.svg",
+  },
+  {
+    label: "Antifrizz",
+    imagem: "antiFrizzNormal.svg",
+    selected: "antiFrizzSelected.svg",
+  },
+  {
+    label: "Antiquebra",
+    imagem: "antiquebraNormal.svg",
+    selected: "antiquebraSelected.svg",
+  },
+  {
+    label: "Controle do volume",
+    imagem: "controleVolumeNormal.svg",
+    selected: "controleVolumeSelected.svg",
+  },
+  {
+    label: "Volume",
+    imagem: "volumeNormal.svg",
+    selected: "volumeSelected.svg",
+  },
 ];
 
 export const QuizHair = (props) => {
@@ -85,105 +189,110 @@ export const QuizHair = (props) => {
   const [currentStep, setCurrentStep] = useState("Curvatura");
   const watchFields = watch();
 
-  const [curvatura, setCurvatura] = useState(0);
-  const [tipoCabelo, setTipoCabelo] = useState(0);
-  
-  function atualizaCurvaturaTipo(curvaturaSelecionada, tipoSelecionado) {
+  function parseCurvatura(curvaturaSelecionada) {
     switch (curvaturaSelecionada) {
       case "1A":
-        console.log("1A");
-        break;
+        return 0;
       case "1B":
-        console.log("1B");
-        break;
+        return 0;
       case "1C":
-        console.log("1C");
-        break;
+        return 0;
+
       case "2A":
-        console.log("1A");
-        break;
+        return 1;
+
       case "2B":
-        console.log("2B");
-        break;
+        return 2;
+
       case "2C":
-        console.log("2C");
-        break;
+        return 3;
+
       case "3A":
-        console.log("3A");
-        break;
+        return 4;
+
       case "3B":
-        console.log("3B");
-        break;
+        return 5;
+
       case "3C":
-        console.log("3C");
-        break;
+        return 6;
+
       case "4A":
-        console.log("4A");
-        break;
+        return 7;
+
       case "4B":
-        console.log("4B");
-        break;
+        return 8;
+
       case "4C":
-        console.log("4C");
-        break;
+        return 9;
+
       default:
         console.log("não achou");
     }
+  }
+
+  function parseTipo(tipoSelecionado) {
     switch (tipoSelecionado) {
       case "Normal":
-        console.log("normal");
-        break;
+        return 0;
+
       case "Seco":
-        console.log("normal");
-        break;
+        return 2;
+
       case "Oleoso":
-        console.log("normal");
-        break;
+        return 1;
+
       case "Misto":
-        console.log("normal");
-        break;
+        return 3;
+
       default:
-        console.log("nenhum");
+        console.log("não achou");
     }
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     //atualizaCurvaturaTipo(data.curvatura.label, data.tipo.label);
     console.log(data);
     setCurrentStep("Resultado");
-    /*axios
-      .post("http://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario", {
-        curvaturaCabelo: 0,
-        situacaoCabelo: 0,
-        temAlisamento: true,
-        temTintura: true,
-        temDescoloracao: true,
-        temCaspa: true,
-        temQueda: true,
-        temFiosElasticos: true,
-        produtoEhVegano: true,
-        produtoEhCrueltyfree: true,
-        produtoEhNoPooLowPoo: true,
-        produtoNaoTemParabenoESimilares: true,
-        produtoEhNatural: true,
-        produtoEhAntiqueda: true,
-        produtoEhAntifrizz: true,
-        produtoEhAntinos: true,
-        produtoDahBrilho: true,
-        produtoDahMaciez: true,
-        produtoDahHidratacao: true,
-        produtoDahDefinicao: true,
-        produtoDahCrescimento: true,
-        produtoDahVolume: true,
-        produtoControlaOleosidade: true,
-        produtoControlaVolume: true,
-      })
-      .then((response) => {
-        console.log(response.data.id);
-      })
-      .catch((error) => {
-        console.log("deuerro");
-      }); */
+    
+    try {
+      const response = await axios.post(
+        "http://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario",
+        {
+          curvaturaCabelo: parseCurvatura(data.curvatura),
+          situacaoCabelo: parseTipo(data.tipo),
+          temAlisamento: data.quimicas.includes("Alisamento"),
+          temTintura: data.quimicas.includes("Tintura"),
+          temDescoloracao: data.quimicas.includes("Descoloração"),
+          temCaspa: data.caracteristicas.includes("Caspa"),
+          temQueda: data.caracteristicas.includes("Queda dos fios"),
+          temFiosElasticos: data.caracteristicas.includes("Fios elásticos"),
+          produtoEhVegano: data.produtos.includes("Veganos"),
+          produtoEhCrueltyfree: data.produtos.includes("Cruelty free"),
+          produtoEhNoPooLowPoo: data.produtos.includes("No poo/Low poo"),
+          produtoNaoTemParabenoESimilares:
+            data.produtos.includes("SemParabenos"),
+          produtoEhNatural: data.produtos.includes("Naturais"),
+          produtoEhAntiqueda: data.objetivos.includes("Antiquebra"),
+          produtoEhAntifrizz: data.objetivos.includes("Antifrizz"),
+          produtoEhAntinos: false,
+          produtoDahBrilho: data.objetivos.includes("Brilho"),
+          produtoDahMaciez: data.objetivos.includes("Maciez e hidratação"),
+          produtoDahHidratacao: data.objetivos.includes("Maciez e hidratação"),
+          produtoDahDefinicao: data.objetivos.includes("Definição"),
+          produtoDahCrescimento: data.objetivos.includes(
+            "Crescimento dos fios"
+          ),
+          produtoDahVolume: data.objetivos.includes("Volume"),
+          produtoControlaOleosidade: data.objetivos.includes(
+            "Controle de oleosidade"
+          ),
+          produtoControlaVolume: data.objetivos.includes("Controle do volume"),
+        }
+      );
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -276,8 +385,9 @@ export const QuizHair = (props) => {
                       key={tipoCurvatura.label}
                       option={tipoCurvatura.label}
                       image={tipoCurvatura.imagem}
-                      onClick={() => setValue("curvatura", tipoCurvatura)}
-                      selected={watchFields.curvatura === tipoCurvatura}
+                      imageSelected={tipoCurvatura.selected}
+                      onClick={() => setValue("curvatura", tipoCurvatura.label)}
+                      selected={watchFields.curvatura === tipoCurvatura.label}
                     />
                   ))}
                   <input {...register("curvatura", { required: true })}></input>
@@ -309,8 +419,9 @@ export const QuizHair = (props) => {
                       key={tipoTipos.label}
                       option={tipoTipos.label}
                       image={tipoTipos.imagem}
-                      onClick={() => setValue("tipo", tipoTipos)}
-                      selected={watchFields.tipo === tipoTipos}
+                      imageSelected={tipoTipos.selected}
+                      onClick={() => setValue("tipo", tipoTipos.label)}
+                      selected={watchFields.tipo === tipoTipos.label}
                     />
                   ))}
                   <input {...register("tipo", { required: true })}></input>
@@ -341,28 +452,31 @@ export const QuizHair = (props) => {
                       key={tipoQuimicas.label}
                       option={tipoQuimicas.label}
                       image={tipoQuimicas.imagem}
+                      imageSelected={tipoQuimicas.selected}
                       onClick={() => {
                         if (watchFields.quimicas) {
-                          if (watchFields.quimicas.includes(tipoQuimicas)) {
+                          if (
+                            watchFields.quimicas.includes(tipoQuimicas.label)
+                          ) {
                             setValue(
                               "quimicas",
                               watchFields.quimicas.filter(
-                                (item) => item !== tipoQuimicas
+                                (item) => item !== tipoQuimicas.label
                               )
                             );
                           } else {
                             setValue("quimicas", [
                               ...watchFields.quimicas,
-                              tipoQuimicas,
+                              tipoQuimicas.label,
                             ]);
                           }
                         } else {
-                          setValue("quimicas", [tipoQuimicas]);
+                          setValue("quimicas", [tipoQuimicas.label]);
                         }
                       }}
                       selected={
                         watchFields.quimicas &&
-                        watchFields.quimicas.includes(tipoQuimicas)
+                        watchFields.quimicas.includes(tipoQuimicas.label)
                       }
                     />
                   ))}
@@ -394,33 +508,36 @@ export const QuizHair = (props) => {
                       key={tipoCaracteristicas.label}
                       option={tipoCaracteristicas.label}
                       image={tipoCaracteristicas.imagem}
+                      imageSelected={tipoCaracteristicas.selected}
                       onClick={() => {
                         if (watchFields.caracteristicas) {
                           if (
                             watchFields.caracteristicas.includes(
-                              tipoCaracteristicas
+                              tipoCaracteristicas.label
                             )
                           ) {
                             setValue(
                               "caracteristicas",
                               watchFields.caracteristicas.filter(
-                                (item) => item !== tipoCaracteristicas
+                                (item) => item !== tipoCaracteristicas.label
                               )
                             );
                           } else {
                             setValue("caracteristicas", [
                               ...watchFields.caracteristicas,
-                              tipoCaracteristicas,
+                              tipoCaracteristicas.label,
                             ]);
                           }
                         } else {
-                          setValue("caracteristicas", [tipoCaracteristicas]);
+                          setValue("caracteristicas", [
+                            tipoCaracteristicas.label,
+                          ]);
                         }
                       }}
                       selected={
                         watchFields.caracteristicas &&
                         watchFields.caracteristicas.includes(
-                          tipoCaracteristicas
+                          tipoCaracteristicas.label
                         )
                       }
                     />
@@ -456,28 +573,31 @@ export const QuizHair = (props) => {
                       key={tipoProdutos.label}
                       option={tipoProdutos.label}
                       image={tipoProdutos.imagem}
+                      imageSelected={tipoProdutos.selected}
                       onClick={() => {
                         if (watchFields.produtos) {
-                          if (watchFields.produtos.includes(tipoProdutos)) {
+                          if (
+                            watchFields.produtos.includes(tipoProdutos.label)
+                          ) {
                             setValue(
                               "produtos",
                               watchFields.produtos.filter(
-                                (item) => item !== tipoProdutos
+                                (item) => item !== tipoProdutos.label
                               )
                             );
                           } else {
                             setValue("produtos", [
                               ...watchFields.produtos,
-                              tipoProdutos,
+                              tipoProdutos.label,
                             ]);
                           }
                         } else {
-                          setValue("produtos", [tipoProdutos]);
+                          setValue("produtos", [tipoProdutos.label]);
                         }
                       }}
                       selected={
                         watchFields.produtos &&
-                        watchFields.produtos.includes(tipoProdutos)
+                        watchFields.produtos.includes(tipoProdutos.label)
                       }
                     />
                   ))}
@@ -509,28 +629,31 @@ export const QuizHair = (props) => {
                       key={tipoObjetivo.label}
                       option={tipoObjetivo.label}
                       image={tipoObjetivo.imagem}
+                      imageSelected={tipoObjetivo.selected}
                       onClick={() => {
                         if (watchFields.objetivos) {
-                          if (watchFields.objetivos.includes(tipoObjetivo)) {
+                          if (
+                            watchFields.objetivos.includes(tipoObjetivo.label)
+                          ) {
                             setValue(
                               "objetivos",
                               watchFields.objetivos.filter(
-                                (item) => item !== tipoObjetivo
+                                (item) => item !== tipoObjetivo.label
                               )
                             );
                           } else {
                             setValue("objetivos", [
                               ...watchFields.objetivos,
-                              tipoObjetivo,
+                              tipoObjetivo.label,
                             ]);
                           }
                         } else {
-                          setValue("objetivos", [tipoObjetivo]);
+                          setValue("objetivos", [tipoObjetivo.label]);
                         }
                       }}
                       selected={
                         watchFields.objetivos &&
-                        watchFields.objetivos.includes(tipoObjetivo)
+                        watchFields.objetivos.includes(tipoObjetivo.label)
                       }
                     />
                   ))}
