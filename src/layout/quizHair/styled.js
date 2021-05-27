@@ -94,7 +94,8 @@ export const StyledInfo = styled.div`
   justify-content: space-around;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 28rem;
+  max-width: 30rem;
+
   h4 {
     font-family: "Poppins", sans-serif;
     font-weight: lighter;
@@ -103,11 +104,7 @@ export const StyledInfo = styled.div`
     color: ${(props) => props.theme.colors.primaryBlue};
     margin: 0;
   }
-  h5 {
-    font-weight: normal;
-    font-size: 22px;
-    margin-top: 10%;
-  }
+
   button {
     margin-top: 5%;
     display: flex;
@@ -121,6 +118,27 @@ export const StyledInfo = styled.div`
     background: ${(props) => props.theme.colors.primaryPurple};
     color: white;
     font-size: 22px;
+  }
+`;
+
+export const StyledResultText = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+  overflow-y: auto;
+  ::-webkit-scrollbar {
+    background-color: #f4f4f4;
+    width: 4px;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #FB9079;
+    border-radius: 4px;
+  }
+  h5 {
+    font-weight: normal;
+    font-size: 16px;
+    margin: 0;
   }
 `;
 

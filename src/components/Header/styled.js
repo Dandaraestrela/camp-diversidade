@@ -11,7 +11,7 @@ export const StyledHeaderWrapper = styled.div`
 
   img {
     width: 90px;
-    height: 40px;
+    height: 90px;
     object-fit: cover;
   }
   @media (max-width: 960px) {

@@ -1,10 +1,10 @@
-import styled from "styled-components";
+  import styled from "styled-components";
 
-export const StyledProductWrapper = styled.div`
+export const StyledTipWrapper = styled.div`
   display: flex;
   flex-direction: row;
   max-width: 412px;
-  max-height: 180px;
+  min-height: 162px;
   padding: 8px;
   background: ${(props) => props.theme.colors.terciaryOrange};
   box-shadow: 6px 6px 32px 1px rgba(251, 144, 121, 0.26);
@@ -25,48 +25,25 @@ export const StyledProductWrapper = styled.div`
   }
 `;
 
-export const StyledProductInfo = styled.div`
+export const StyledTipInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-left: 16px;
   margin-right: 8px;
-  overflow-y: auto;
-  ::-webkit-scrollbar {
-    background-color: #f4f4f4;
-    width: 4px;
-    border-radius: 4px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #FB9079;
-    border-radius: 4px;
-  }
   h4 {
     margin: 0px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     color: ${(props) => props.theme.colors.primaryBlue};
   }
   h5 {
     margin: 0px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: ${(props) => props.theme.colors.neutralGrey1};
   }
 `;
 
-export const StyledProductCategory = styled.div`
-  display: flex;
-  background: ${(props) => props.theme.colors.primaryOrange};
-  width: fit-content;
-  height: fit-content;
-  padding: 6px 8px;
-  border-radius: 3px;
-  h3 {
-    margin: 0;
-    color: white;
-    background: none;
-    font-size: 12px;
-    font-weight: 600;
-  }
-`;
+
+  

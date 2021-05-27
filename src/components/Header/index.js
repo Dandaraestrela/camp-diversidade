@@ -9,8 +9,7 @@ export const Header = (props) => {
     <StyledHeaderWrapper>
       <img
         alt="logomarca"
-        src="https://images.unsplash.com/photo-1611634116642-3bd037f341b0?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-      />
+        src={"./Logo.svg"}      />
       <StyledTabsWrapper>
         <button
           type="button"

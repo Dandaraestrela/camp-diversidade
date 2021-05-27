@@ -4,17 +4,20 @@ import {
   StyledProductCategory,
 } from "./styled";
 import Product from "../../assets/Product.png";
+
+// este componente rece as props img, nome, descricao, tipo
+
 export const ProductCard = (props) => {
   return (
     <StyledProductWrapper>
-      <img alt="Imagem do produto" src={Product} />
+      <img alt="Imagem do produto" src={props.imagem} />
       <StyledProductInfo>
-        <h4>Cocooil Leave-in</h4>
+        <h4>{props.titulo}</h4>
         <h5>
-          Descrição muito longa ou apenas um pouco que ficará contida aqui
+          {props.descricao}
         </h5>
         <StyledProductCategory>
-          <h3>oil-free</h3>
+          <h3>{props.tipo}</h3>
         </StyledProductCategory>
       </StyledProductInfo>
     </StyledProductWrapper>

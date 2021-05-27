@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import axios from "axios";
 import {
   StyledRecWrapper,
   StyledRecContent,
@@ -6,12 +7,18 @@ import {
   StyledInfo,
   StyledInfoType,
   StyledCardsWrapper,
+  StyledLoading,
 } from "./styled";
+import { Context } from "../../GlobalContext";
 import { Header } from "../../components/Header";
 import { ProductCard } from "../../components/ProductCard";
+import { TipCard } from "../../components/TipCard";
 import { FilterButton } from "../../components/FilterButton";
+import Loading from "../../assets/Loading.gif";
+import Dica from "../../assets/Dica.png";
 
-const filtercategories = [
+const filterCategoriesProducts = [
+  "Recomendações Personalizadas",
   "Liso",
   "Ondulado",
   "Cacheado",
@@ -19,15 +26,35 @@ const filtercategories = [
   "Com Tintura",
   "Com Descoloração",
   "Com Alisamento",
-  "Veganos",
+  "Em transição",
   "Cruelty free",
-  "No poo/Low poo",
+  "+ Volume",
+  "- Volume",
   "Hidratação",
-  "Volume",
-  "Controle de volume",
+  "Cruelty Free",
+  "No Poo/Low Poo",
+  "Vegano",
+  "Natural",
+];
+const filterCategoriesTips = [
+  "Recomendações Personalizadas",
+  "Liso",
+  "Ondulado",
+  "Cacheado",
+  "Crespo",
+  "Transição",
+  "Normal",
+  "Oleoso",
+  "Seco",
+  "Misto",
+  "Alisamento",
+  "Tintura",
+  "Descoloração",
 ];
 
 export const Recommendation = () => {
+  const [user, setUser] = useContext(Context);
+  const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [infoType, setInfoType] = useState("Produtos");
 
   const tabsProps = (type) => {
@@ -43,7 +70,111 @@ export const Recommendation = () => {
       fontWeight: selected ? "bold" : "normal",
     };
   };
-  const [filters, setFilters] = useState([]);
+  // filtros selecionados
+  const [filtersProducts, setFiltersProducts] = useState([]);
+  const [filtersTips, setFiltersTips] = useState([]);
+  // respostas das requisições
+  const [products, setProducts] = useState([]);
+  const [tips, setTips] = useState([]);
+
+  useEffect(() => {
+    if (
+      user.id !== undefined &&
+      filtersProducts.includes("Recomendações Personalizadas")
+    ) {
+      // se o user tiver id, faz a busca de acordo com as preferências dele
+      //const usuarioLogado = localStorage.getItem("currentUserId");
+      console.log("entrou na personalizada");
+      setIsFirstLoading(false);
+      axios
+        .get(
+          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/produto/usuario/${user.id}`
+        )
+        .then((response) => {
+          setProducts(response.data.data);
+        });
+    } else {
+      // se o user não tiver id, faz a busca geral
+      setIsFirstLoading(false);
+      axios
+        .get(
+          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/produto?lisos=${
+            filtersProducts.includes("Liso") ? "true" : "false"
+          }&ondulados=${
+            filtersProducts.includes("Ondulado") ? "true" : "false"
+          }&cacheados=${
+            filtersProducts.includes("Cacheado") ? "true" : "false"
+          }&crespos=${
+            filtersProducts.includes("Crespo") ? "true" : "false"
+          }&transicao=${
+            filtersProducts.includes("Em transição") ? "true" : "false"
+          }&alisamento=${
+            filtersProducts.includes("Com Alisamento") ? "true" : "false"
+          }&tintura=${
+            filtersProducts.includes("Com Tintura") ? "true" : "false"
+          }&descoloracao=${
+            filtersProducts.includes("Com Descoloração") ? "true" : "false"
+          }&volume=${
+            filtersProducts.includes("+ Volume") ? "true" : "false"
+          }&controleVolume=${
+            filtersProducts.includes("- Volume") ? "true" : "false"
+          }&maciezHidratacao=${
+            filtersProducts.includes("Hidratação") ? "true" : "false"
+          }&crueltyFree=${
+            filtersProducts.includes("Cruelty Free") ? "true" : "false"
+          }&noPooLowPoo=${
+            filtersProducts.includes("No Poo/Low Poo") ? "true" : "false"
+          }&vegano=${
+            filtersProducts.includes("Vegano") ? "true" : "false"
+          }&natural=${filtersProducts.includes("Natural") ? "true" : "false"}`
+        )
+        .then((response) => {
+          setProducts(response.data.data);
+        });
+    }
+  }, [filtersProducts]);
+
+  useEffect(() => {
+    if (
+      user.id !== undefined &&
+      filtersTips.includes("Recomendações Personalizadas")
+    ) {
+      console.log("entrou personalizada dicas");
+      axios
+        .get(
+          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/dica/usuario/${user.id}
+        `
+        )
+        .then((response) => {
+          setTips(response.data.data);
+          console.log(response.data);
+        });
+    } else {
+      axios
+        .get(
+          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/dica?lisos=${
+            filtersTips.includes("Liso") ? "true" : "false"
+          }
+            &cacheados=${filtersTips.includes("Cacheado") ? "true" : "false"}
+            &ondulados=${filtersTips.includes("Ondulado") ? "true" : "false"}
+            &crespos=${filtersTips.includes("Crespo") ? "true" : "false"}
+            &transicao=${filtersTips.includes("Transição") ? "true" : "false"}
+            &normal=${filtersTips.includes("Normal") ? "true" : "false"}
+            &oleoso=${filtersTips.includes("Oleoso") ? "true" : "false"}
+            &seco=${filtersTips.includes("Seco") ? "true" : "false"}
+            &misto=${filtersTips.includes("Misto") ? "true" : "false"}
+            &alisamento=${filtersTips.includes("Alisamento") ? "true" : "false"}
+            &tintura=${filtersTips.includes("Tintura") ? "true" : "false"}
+            &descoloracao=${
+              filtersTips.includes("Descoloração") ? "true" : "false"
+            }`
+        )
+        .then((response) => {
+          setTips(response.data.data);
+        });
+    }
+  }, [filtersTips]);
+
   return (
     <StyledRecWrapper>
       <Header page="Recomendacoes" />
@@ -52,40 +183,83 @@ export const Recommendation = () => {
       </h1>
       <StyledRecContent>
         <StyledFilters>
-          {filtercategories.map((category) => {
-            return(
-            <FilterButton
-              filterLabel={category}
-              onClick={() => {
-                if (filters.includes(category)) {
-                  setFilters(filters.filter((item) => item !== category));
-                }else{
-                  setFilters([...filters, category]);
-                }
-              }}
-              selected={filters.includes(category)}
-            />);
-          })}
+          {infoType === "Produtos" &&
+            filterCategoriesProducts.map((category) => {
+              return (
+                <FilterButton
+                  key={category}
+                  filterLabel={category}
+                  onClick={() => {
+                    if (filtersProducts.includes(category)) {
+                      setFiltersProducts(
+                        filtersProducts.filter((item) => item !== category)
+                      );
+                    } else {
+                      setFiltersProducts([...filtersProducts, category]);
+                    }
+                  }}
+                  selected={filtersProducts.includes(category)}
+                />
+              );
+            })}
+          {infoType === "Dicas" &&
+            filterCategoriesTips.map((tip) => {
+              return (
+                <FilterButton
+                  key={tip}
+                  filterLabel={tip}
+                  onClick={() => {
+                    if (filtersTips.includes(tip)) {
+                      setFiltersTips(
+                        filtersTips.filter((item) => item !== tip)
+                      );
+                    } else {
+                      setFiltersTips([...filtersTips, tip]);
+                    }
+                  }}
+                  selected={filtersTips.includes(tip)}
+                />
+              );
+            })}
         </StyledFilters>
         <StyledInfo>
           <StyledInfoType>
             <button
               onClick={() => setInfoType("Produtos")}
-              minhaProps={false}
               style={tabsProps("Produtos")}
             >
               Produtos
             </button>
             <button
               onClick={() => setInfoType("Dicas")}
-              minhaProps={true}
               style={tabsProps("Dicas")}
             >
               Dicas
             </button>
           </StyledInfoType>
           <StyledCardsWrapper>
-            <ProductCard />
+            {infoType === "Produtos" &&
+              products?.map((product) => {
+                let desc = product.descricao.substr(0, 100);
+                return (
+                  <ProductCard
+                    key={product.id}
+                    imagem={product.imagem}
+                    titulo={product.nome}
+                    descricao={desc}
+                    tipo={product.tipo}
+                  />
+                );
+              })}
+            {infoType === "Dicas" &&
+              tips?.map((tip) => (
+                <TipCard
+                  key={tip.id}
+                  imagem={Dica}
+                  titulo={tip.titulo}
+                  descricao={tip.descricao}
+                />
+              ))}
           </StyledCardsWrapper>
         </StyledInfo>
       </StyledRecContent>

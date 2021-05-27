@@ -30,6 +30,7 @@ export const StyledFilters = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: fit-content;
   @media (min-width: 800px){
     width: 30%;
   }
@@ -58,4 +59,10 @@ export const StyledCardsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+`;
+
+export const StyledLoading = styled.img`
+  width: 4%;
+  height: auto;
+  align-self: center;
 `;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { ImArrowRight2 } from "react-icons/im";
 import { IoArrowForwardCircle } from "react-icons/io5";
@@ -10,11 +10,16 @@ import {
   StyledFooterWrapper,
   StyledInfo,
   StyledResultContent,
+  StyledResultText,
   StyledResultImg,
 } from "./styled";
+import { Context } from "../../GlobalContext";
 import { Header } from "../../components/Header";
 import { OptionSelect } from "../../components/OptionSelect";
 import Liso from "../../assets/Liso.svg";
+import Ondulado from "../../assets/Ondulado.svg";
+import Cacheado from "../../assets/Cacheado.svg";
+import Crespo from "../../assets/Crespo.svg";
 import axios from "axios";
 
 const curvaturas = [
@@ -62,7 +67,7 @@ const quimicas = [
     selected: "alisamentoSelected.svg",
   },
   {
-    label: "Nenhuma Quimica",
+    label: "Nenhuma Química",
     imagem: "nenhumaQuimicaNormal.svg",
     selected: "nenhumaQuimicaSelected.svg",
   },
@@ -176,6 +181,7 @@ const objetivos = [
 ];
 
 export const QuizHair = (props) => {
+  const [user, setUser] = useContext(Context);
   const { register, handleSubmit, setValue, watch } = useForm({
     defaultValues: {
       curvatura: "",
@@ -187,42 +193,57 @@ export const QuizHair = (props) => {
     },
   });
   const [currentStep, setCurrentStep] = useState("Curvatura");
+  const [typeText, setTypeText] = useState("");
+  const [resultText, setResultText] = useState([]);
+  const [curvatura, setCurvatura] = useState("");
   const watchFields = watch();
 
   function parseCurvatura(curvaturaSelecionada) {
     switch (curvaturaSelecionada) {
       case "1A":
+        setCurvatura("Liso");
         return 0;
       case "1B":
+        setCurvatura("Liso");
         return 0;
       case "1C":
+        setCurvatura("Liso");
         return 0;
 
       case "2A":
+        setCurvatura("Ondulado");
         return 1;
 
       case "2B":
+        setCurvatura("Ondulado");
         return 2;
 
       case "2C":
+        setCurvatura("Ondulado");
         return 3;
 
       case "3A":
+        setCurvatura("Cacheado");
         return 4;
 
       case "3B":
+        setCurvatura("Cacheado");
         return 5;
 
       case "3C":
+        setCurvatura("Cacheado");
         return 6;
 
       case "4A":
+        setCurvatura("Crespo");
         return 7;
 
       case "4B":
+        setCurvatura("Crespo");
         return 8;
 
       case "4C":
+        setCurvatura("Crespo");
         return 9;
 
       default:
@@ -250,10 +271,8 @@ export const QuizHair = (props) => {
   }
 
   const onSubmit = async (data) => {
-    //atualizaCurvaturaTipo(data.curvatura.label, data.tipo.label);
-    console.log(data);
     setCurrentStep("Resultado");
-    
+    var resposta;
     try {
       const response = await axios.post(
         "http://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario",
@@ -269,15 +288,14 @@ export const QuizHair = (props) => {
           produtoEhVegano: data.produtos.includes("Veganos"),
           produtoEhCrueltyfree: data.produtos.includes("Cruelty free"),
           produtoEhNoPooLowPoo: data.produtos.includes("No poo/Low poo"),
-          produtoNaoTemParabenoESimilares:
-            data.produtos.includes("SemParabenos"),
+          produtoSemParabenos: data.produtos.includes("SemParabenos"),
           produtoEhNatural: data.produtos.includes("Naturais"),
           produtoEhAntiqueda: data.objetivos.includes("Antiquebra"),
           produtoEhAntifrizz: data.objetivos.includes("Antifrizz"),
-          produtoEhAntinos: false,
           produtoDahBrilho: data.objetivos.includes("Brilho"),
-          produtoDahMaciez: data.objetivos.includes("Maciez e hidratação"),
-          produtoDahHidratacao: data.objetivos.includes("Maciez e hidratação"),
+          produtoDahMaciezHidratacao: data.objetivos.includes(
+            "Maciez e hidratação"
+          ),
           produtoDahDefinicao: data.objetivos.includes("Definição"),
           produtoDahCrescimento: data.objetivos.includes(
             "Crescimento dos fios"
@@ -289,10 +307,14 @@ export const QuizHair = (props) => {
           produtoControlaVolume: data.objetivos.includes("Controle do volume"),
         }
       );
-      console.log(response);
+      resposta = response;
     } catch (e) {
       console.log(e);
     }
+    setUser({ id: resposta.data.id });
+    setTypeText(resposta.data.texto.tipoCurvatura);
+    setResultText(resposta.data.texto);
+    console.log(resposta.data.id);
   };
 
   return (
@@ -324,7 +346,7 @@ export const QuizHair = (props) => {
                   background: currentStep === "Tipos" ? "#514EDE" : "#FFC0B2",
                 }}
                 onClick={() => setCurrentStep("Tipos")}
-                disabled={!watchFields.tipos || watchFields.tipos.length === 0}
+                disabled={!watchFields.tipo || watchFields.tipo.length === 0}
               />
 
               <button
@@ -454,21 +476,28 @@ export const QuizHair = (props) => {
                       image={tipoQuimicas.imagem}
                       imageSelected={tipoQuimicas.selected}
                       onClick={() => {
+                        //verifica se o array já existe
                         if (watchFields.quimicas) {
-                          if (
-                            watchFields.quimicas.includes(tipoQuimicas.label)
-                          ) {
-                            setValue(
-                              "quimicas",
-                              watchFields.quimicas.filter(
-                                (item) => item !== tipoQuimicas.label
-                              )
-                            );
+                          // verifica se o item selecionado foi "Nenhuma" se sim, remove o restante
+                          if (tipoQuimicas.label === "Nenhuma Química") {
+                            setValue("quimicas", tipoQuimicas.label);
                           } else {
-                            setValue("quimicas", [
-                              ...watchFields.quimicas,
-                              tipoQuimicas.label,
-                            ]);
+                            if (
+                              watchFields.quimicas.includes(tipoQuimicas.label)
+                            ) {
+                              // verifica se o item clicado existe no array e remove ou adiciona
+                              setValue(
+                                "quimicas",
+                                watchFields.quimicas.filter(
+                                  (item) => item !== tipoQuimicas.label
+                                )
+                              );
+                            } else {
+                              setValue("quimicas", [
+                                ...watchFields.quimicas,
+                                tipoQuimicas.label,
+                              ]);
+                            }
                           }
                         } else {
                           setValue("quimicas", [tipoQuimicas.label]);
@@ -511,22 +540,29 @@ export const QuizHair = (props) => {
                       imageSelected={tipoCaracteristicas.selected}
                       onClick={() => {
                         if (watchFields.caracteristicas) {
-                          if (
-                            watchFields.caracteristicas.includes(
-                              tipoCaracteristicas.label
-                            )
-                          ) {
+                          if (tipoCaracteristicas.label === "Nenhuma") {
                             setValue(
                               "caracteristicas",
-                              watchFields.caracteristicas.filter(
-                                (item) => item !== tipoCaracteristicas.label
-                              )
+                              tipoCaracteristicas.label
                             );
                           } else {
-                            setValue("caracteristicas", [
-                              ...watchFields.caracteristicas,
-                              tipoCaracteristicas.label,
-                            ]);
+                            if (
+                              watchFields.caracteristicas.includes(
+                                tipoCaracteristicas.label
+                              )
+                            ) {
+                              setValue(
+                                "caracteristicas",
+                                watchFields.caracteristicas.filter(
+                                  (item) => item !== tipoCaracteristicas.label
+                                )
+                              );
+                            } else {
+                              setValue("caracteristicas", [
+                                ...watchFields.caracteristicas,
+                                tipoCaracteristicas.label,
+                              ]);
+                            }
                           }
                         } else {
                           setValue("caracteristicas", [
@@ -661,6 +697,7 @@ export const QuizHair = (props) => {
                 </StyledOptions>
                 <StyledFooterWrapper>
                   <h3>{currentStep}</h3>
+
                   <button
                     type="submit"
                     disabled={
@@ -692,18 +729,33 @@ export const QuizHair = (props) => {
             <StyledResultContent>
               <StyledInfo>
                 <h4>
-                  Uau, seu cabelo é <strong>liso!</strong>
+                  Uau, seu cabelo é <strong>{curvatura}!</strong>
                 </h4>
-                <h5>
-                  Diante de uma imensa diversidade de cabelos em nosso país:
-                  desde o mais liso até o mais crespo, neste espaço você tem a
-                  liberdade que precisa para explorar o tipo de cabelo que você
-                  possui e ainda saber como cuidar dele de maneira saudável e
-                  dinâmica. Vamos lá (re)descobrir essa cabeleira juntos?
-                </h5>
+                <StyledResultText>
+                  {Object.keys(resultText).map((key, index) => {
+                    if (index === 0) {
+                    } else {
+                      if (resultText[key] !== "") {
+                        return <h5 key={key}>{resultText[key]}</h5>;
+                      }
+                    }
+                  })}
+                </StyledResultText>
+
                 <button>Explorar recomendações</button>
               </StyledInfo>
-              <StyledResultImg alt="resultado" src={Liso} />
+              <StyledResultImg
+                alt="resultado"
+                src={
+                  curvatura === "Liso"
+                    ? Liso
+                    : curvatura === "Ondulado"
+                    ? Ondulado
+                    : curvatura === "Cacheado"
+                    ? Cacheado
+                    : Crespo
+                }
+              />
             </StyledResultContent>
             <StyledFooterWrapper>
               <h3>{currentStep}</h3>

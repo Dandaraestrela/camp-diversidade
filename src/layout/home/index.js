@@ -1,8 +1,10 @@
 import { StyledHomeWrapper, StyledHomeContent, StyledInfo, StyledHomeImg } from "./styled";
+import { useHistory } from "react-router-dom";
 import { Header } from "../../components/Header";
 import Principal from '../../assets/Principal.svg';
 
 export const Home = () => {
+  let history = useHistory();
   return (
     <>
       <StyledHomeWrapper>
@@ -17,7 +19,7 @@ export const Home = () => {
               saber como cuidar dele de maneira saudável e dinâmica. <strong> Vamos lá
               (re)descobrir essa cabeleira juntos? </strong>
             </h2>
-            <button>Iniciar minha jornada</button>
+            <button onClick={() => history.push("/Quiz")}>Iniciar minha jornada</button>
           </StyledInfo>
           <StyledHomeImg alt="boas-vindas" src={Principal}/>
         </StyledHomeContent>

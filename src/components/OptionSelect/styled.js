@@ -47,6 +47,7 @@ export const StyledCategory = styled.div`
   width: 100%;
   border-radius: 0 0 12px 12px;
   h4 {
+    text-align: center;
     font-size: 12px;
   }
 `;
