@@ -88,7 +88,7 @@ export const Recommendation = () => {
       setIsFirstLoading(false);
       axios
         .get(
-          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/produto/usuario/${user.id}`
+          `https://quecabeleiraeessa-com-br.umbler.net/api/v1/produto/usuario/${user.id}`
         )
         .then((response) => {
           setProducts(response.data.data);
@@ -98,7 +98,7 @@ export const Recommendation = () => {
       setIsFirstLoading(false);
       axios
         .get(
-          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/produto?lisos=${
+          `https://quecabeleiraeessa-com-br.umbler.net/api/v1/produto?lisos=${
             filtersProducts.includes("Liso") ? "true" : "false"
           }&ondulados=${
             filtersProducts.includes("Ondulado") ? "true" : "false"
@@ -142,7 +142,7 @@ export const Recommendation = () => {
       console.log("entrou personalizada dicas");
       axios
         .get(
-          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/dica/usuario/${user.id}
+          `https://quecabeleiraeessa-com-br.umbler.net/api/v1/dica/usuario/${user.id}
         `
         )
         .then((response) => {
@@ -152,7 +152,7 @@ export const Recommendation = () => {
     } else {
       axios
         .get(
-          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/dica?lisos=${
+          `https://quecabeleiraeessa-com-br.umbler.net/api/v1/dica?lisos=${
             filtersTips.includes("Liso") ? "true" : "false"
           }
             &cacheados=${filtersTips.includes("Cacheado") ? "true" : "false"}

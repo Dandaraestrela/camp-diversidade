@@ -18,7 +18,7 @@ import { Header } from "../../components/Header";
 import { OptionSelect } from "../../components/OptionSelect";
 import Liso from "../../assets/Liso.svg";
 import Ondulado from "../../assets/Ondulado.svg";
-import Cacheado from "../../assets/Crespo.svg";
+import Cacheado from "../../assets/Cacheados.svg";
 import Crespo from "../../assets/Crespo.svg";
 import axios from "axios";
 
@@ -275,7 +275,7 @@ export const QuizHair = (props) => {
     var resposta;
     try {
       const response = await axios.post(
-        "http://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario",
+        "https://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario",
         {
           curvaturaCabelo: parseCurvatura(data.curvatura),
           situacaoCabelo: parseTipo(data.tipo),
