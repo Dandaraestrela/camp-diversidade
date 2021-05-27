@@ -18,7 +18,7 @@ import { Header } from "../../components/Header";
 import { OptionSelect } from "../../components/OptionSelect";
 import Liso from "../../assets/Liso.svg";
 import Ondulado from "../../assets/Ondulado.svg";
-import Cacheado from "../../assets/Cacheado.svg";
+import Cacheado from "../../assets/Crespo.svg";
 import Crespo from "../../assets/Crespo.svg";
 import axios from "axios";
 
