@@ -20,7 +20,6 @@ export const ProductCard = (props) => {
   });
 
   function handleShowModal(){
-    console.log("entroua qui");
     setShowModal(!showModal);
   }
 

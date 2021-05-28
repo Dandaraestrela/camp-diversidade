@@ -60,6 +60,11 @@ export const Time = () => {
     }
   }
 
+  function previousDecada() {
+    if (tabIndex !== 0) {
+      setTabIndex(tabIndex - 1);
+    }
+  }
 
   function nextDecada() {
     if (tabIndex !== 11) {
@@ -119,7 +124,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[0].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[0].imagem} />
+              <StyledDecadaImg src={decadasInfo[0].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
 
@@ -129,7 +134,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[1].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[1].imagem} />
+              <StyledDecadaImg src={decadasInfo[1].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
           <TabPanel>
@@ -138,7 +143,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[2].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[2].imagem} />
+              <StyledDecadaImg src={decadasInfo[2].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
 
@@ -148,7 +153,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[3].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[3].imagem} />
+              <StyledDecadaImg src={decadasInfo[3].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
           <TabPanel>
@@ -157,7 +162,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[4].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[4].imagem} />
+              <StyledDecadaImg src={decadasInfo[4].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
 
@@ -167,7 +172,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[5].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[5].imagem} />
+              <StyledDecadaImg src={decadasInfo[5].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
           <TabPanel>
@@ -176,7 +181,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[6].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[6].imagem} />
+              <StyledDecadaImg src={decadasInfo[6].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
 
@@ -186,7 +191,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[7].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[7].imagem} />
+              <StyledDecadaImg src={decadasInfo[7].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
           <TabPanel>
@@ -195,7 +200,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[8].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[8].imagem} />
+              <StyledDecadaImg src={decadasInfo[8].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
 
@@ -205,7 +210,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[9].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[9].imagem} />
+              <StyledDecadaImg src={decadasInfo[9].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
           <TabPanel>
@@ -214,7 +219,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[10].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[10].imagem} />
+              <StyledDecadaImg src={decadasInfo[10].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
 
@@ -224,7 +229,7 @@ export const Time = () => {
               <StyledDecadaText>
                 <h2>{decadasInfo[11].descricao}</h2>
               </StyledDecadaText>
-              <StyledDecadaImg src={decadasInfo[11].imagem} />
+              <StyledDecadaImg src={decadasInfo[11].imagemWeb} />
             </StyledDecadaWrapper>
           </TabPanel>
         </Tabs>
@@ -232,15 +237,15 @@ export const Time = () => {
       <StyledFooterWrapper>
         <button
           type="button"
-          onClick={() => nextDecada()}
-          style={{ display: tabIndex === 0 ? "none" : "" }}
+          onClick={() => previousDecada()}
+          style={tabIndex === 0 ? {opacity: "0%"} : {} }
         >
           <ImArrowLeft2 style={{ marginLeft: "4px", minWidth: "22px" }} />
           Anterior
         </button>
         <button
           type="button"
-          style={{ display: tabIndex === 0 ? "none" : "" }}
+          style={tabIndex === 11 ? {opacity: "0%"}: {} }
           onClick={() => nextDecada()}
         >
           Próximo

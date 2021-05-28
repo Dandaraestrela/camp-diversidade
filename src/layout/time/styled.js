@@ -28,6 +28,12 @@ export const StyledDecadaText = styled.div`
     line-height: 30px;
     color: ${(props) => props.theme.colors.neutralGrey1};
   }
+  @media (max-width: 960px){
+    width: 100%;
+    h2{
+      text-align: justify;
+    }
+  }
 `;
 
 export const StyledDecadaImg = styled.img`
@@ -39,6 +45,7 @@ export const StyledDecadaImg = styled.img`
 export const StyledFooterWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-top: 3%;

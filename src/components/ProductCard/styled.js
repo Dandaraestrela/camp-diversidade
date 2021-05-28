@@ -16,7 +16,8 @@ export const StyledProductWrapper = styled.div`
     height: 146px;
     object-fit: cover;
   }
-  @media (max-width: 540px){
+  @media (max-width: 940px){
+    max-height: fit-content;
     justify-content: center;
     flex-wrap: wrap;
     img{
@@ -52,6 +53,13 @@ export const StyledProductInfo = styled.div`
     font-size: 14px;
     font-weight: 400;
     color: ${(props) => props.theme.colors.neutralGrey1};
+  }
+  @media (max-width: 940px) {
+    h5{
+      text-align: justify;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
   }
 `;
 

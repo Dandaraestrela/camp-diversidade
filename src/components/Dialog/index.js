@@ -32,7 +32,7 @@ export const Dialog = (props) => {
           </StyledExit>
         </StyledImage>
         <StyledInfo>
-          <h5>{props.nome}n</h5>
+          <h5>{props.nome}</h5>
           <h6>
            {props.descricao}
           </h6>

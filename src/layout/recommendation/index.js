@@ -70,8 +70,12 @@ export const Recommendation = () => {
     };
   };
   // filtros selecionados
-  const [filtersProducts, setFiltersProducts] = useState(user.id !== undefined ? ["Recomendações Personalizadas"] : []);
-  const [filtersTips, setFiltersTips] = useState(user.id !== undefined ? ["Recomendações Personalizadas"] : []);
+  const [filtersProducts, setFiltersProducts] = useState(
+    user.id !== undefined ? ["Recomendações Personalizadas"] : []
+  );
+  const [filtersTips, setFiltersTips] = useState(
+    user.id !== undefined ? ["Recomendações Personalizadas"] : []
+  );
   // respostas das requisições
   const [products, setProducts] = useState([]);
   const [tips, setTips] = useState([]);
@@ -83,7 +87,6 @@ export const Recommendation = () => {
     ) {
       // se o user tiver id, faz a busca de acordo com as preferências dele
       //const usuarioLogado = localStorage.getItem("currentUserId");
-      console.log("entrou na personalizada");
       setIsFirstLoading(false);
       axios
         .get(
@@ -138,7 +141,6 @@ export const Recommendation = () => {
       user.id !== undefined &&
       filtersTips.includes("Recomendações Personalizadas")
     ) {
-      console.log("entrou personalizada dicas");
       axios
         .get(
           `https://quecabeleiraeessa-com-br.umbler.net/api/v1/dica/usuario/${user.id}
@@ -146,7 +148,6 @@ export const Recommendation = () => {
         )
         .then((response) => {
           setTips(response.data.data);
-          console.log(response.data);
         });
     } else {
       axios
@@ -189,12 +190,20 @@ export const Recommendation = () => {
                   key={category}
                   filterLabel={category}
                   onClick={() => {
-                    if (filtersProducts.includes(category)) {
-                      setFiltersProducts(
-                        filtersProducts.filter((item) => item !== category)
-                      );
+                    // se a categoria de filtro selecionada for a de personalizados, remove o restante
+                    if (
+                      category !== "Recomendações Personalizadas" &&
+                      !filtersProducts.includes("Recomendações Personalizadas")
+                    ) {
+                      if (filtersProducts.includes(category)) {
+                        setFiltersProducts(
+                          filtersProducts.filter((item) => item !== category)
+                        );
+                      } else {
+                        setFiltersProducts([...filtersProducts, category]);
+                      }
                     } else {
-                      setFiltersProducts([...filtersProducts, category]);
+                      setFiltersProducts([category]);
                     }
                   }}
                   selected={filtersProducts.includes(category)}
@@ -208,12 +217,19 @@ export const Recommendation = () => {
                   key={tip}
                   filterLabel={tip}
                   onClick={() => {
-                    if (filtersTips.includes(tip)) {
-                      setFiltersTips(
-                        filtersTips.filter((item) => item !== tip)
-                      );
+                    if (
+                      tip !== "Recomendações Personalizadas" &&
+                      !filtersTips.includes("Recomendações Personalizadas")
+                    ) {
+                      if (filtersTips.includes(tip)) {
+                        setFiltersTips(
+                          filtersTips.filter((item) => item !== tip)
+                        );
+                      } else {
+                        setFiltersTips([...filtersTips, tip]);
+                      }
                     } else {
-                      setFiltersTips([...filtersTips, tip]);
+                      setFiltersTips([tip]);
                     }
                   }}
                   selected={filtersTips.includes(tip)}
@@ -244,7 +260,7 @@ export const Recommendation = () => {
           <StyledCardsWrapper>
             {infoType === "Produtos" &&
               products?.map((product) => {
-                let desc = product.descricao.substr(0, 100);
+                let desc = product.descricao.substr(0, 100) + "...";
                 return (
                   <ProductCard
                     key={product.id}

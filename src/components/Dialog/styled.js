@@ -22,6 +22,9 @@ export const StyledDialogContainer = styled.div`
   width: 505px;
   height: 600px;
   border-radius: 16px;
+  @media (max-width: 940px) {
+    width: 70%;
+  }
 `;
 
 export const StyledImage = styled.div`
@@ -50,6 +53,9 @@ export const StyledExit = styled.div`
     height: 40px;
     border: none;
     background: none;
+  }
+  @media (max-width: 940px) {
+    width: 70%;
   }
 `;
 
@@ -82,5 +88,28 @@ export const StyledInfo = styled.div`
     font-size: 18px;
     font-weight: bold;
     color: white;
+  }
+  @media (max-width: 940px) {
+    height: 80%;
+    overflow-y: auto;
+    
+  ::-webkit-scrollbar {
+    background-color: #f4f4f4;
+    width: 4px;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #FB9079;
+    border-radius: 4px;
+  }
+  h6{
+    text-align: justify;
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+  button{
+    font-size: 16px;
+    padding: 4px 18px;
+  }
   }
 `;

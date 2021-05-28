@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledTipWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   max-width: 250px;
   min-height: 162px;
   padding: 16px;
@@ -12,9 +13,9 @@ export const StyledTipWrapper = styled.div`
   margin-right: 12px;
   margin-bottom: 12px;
 
-  @media (max-width: 540px) {
+  @media (max-width: 940px) {
     justify-content: center;
-    flex-wrap: wrap;
+    max-height: fit-content;
   }
 `;
 
@@ -37,5 +38,10 @@ export const StyledTipInfo = styled.div`
     font-size: 16px;
     line-height: 19px;
     color: ${(props) => props.theme.colors.neutralGrey1};
+  }
+  @media (max-width: 940px) {
+    h5{
+      text-align: justify;
+    }
   }
 `;
