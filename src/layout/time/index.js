@@ -21,7 +21,7 @@ export const Time = () => {
 
   useEffect(() => {
     axios
-      .get("http://quecabeleiraeessa-com-br.umbler.net/api/v1/decada")
+      .get("https://quecabeleiraeessa-com-br.umbler.net/api/v1/decada")
       .then((response) => {
         setDecadasInfo(response.data.data);
         console.log(response.data.data);
