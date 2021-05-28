@@ -10,12 +10,24 @@ export const StyledAboutWrapper = styled.div`
     font-size: 40px;
     font-weight: 700;
   }
+
+  @media (max-width: 960px) {
+    justify-content: center;
+    h1{
+      text-align: center;
+    }
+  }
 `;
 
 export const StyledProjectWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  @media (max-width: 960px) {
+    justify-content: center;
+    }
 `;
 
 export const StyledProjectText = styled.div`
@@ -36,7 +48,8 @@ export const StyledProjectImg = styled.img`
 `;
 
 export const StyledPeopleWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 24px;
 `;

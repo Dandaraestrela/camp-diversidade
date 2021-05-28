@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -59,6 +59,7 @@ export const About = () => {
           style={{
             border: "none",
             background: "none",
+            width: "object-fit"
           }}
         >
           <Tab style={tabIndex === 0 ? styledSelected : styledNormal}>
@@ -99,10 +100,10 @@ export const About = () => {
           <StyledPeopleWrapper>
             <PeopleCard imagem={Barbara} name="Bárbara" job="Scrum Master" description={BarbaraDescription}/>
             <PeopleCard imagem={Dandara} name="Dandara" job="Desenvolvedora Front-End" description={DandaraDescription}/>
-            <PeopleCard imagem={Fabricio} name="fabrício" job="Desenvolvedor Back-End" description={FabricioDescription}/>
+            <PeopleCard imagem={Fabricio} name="Fabrício" job="Desenvolvedor Back-End" description={FabricioDescription}/>
             <PeopleCard imagem={Henrique} name="Henrique" job="Desenvolvedor iOS" description={HenriqueDescription}/>
             <PeopleCard imagem={Rodrigo} name="Rodrigo" job="Mentor/ Scrum Master" description={RodrigoDescription}/>
-            <PeopleCard imagem={Sarah} name="BSarahárbara" job="UX?UI Designer" description={SarahDescription}/>
+            <PeopleCard imagem={Sarah} name="Sarah" job="UX?UI Designer" description={SarahDescription}/>
           
           </StyledPeopleWrapper>
         </TabPanel>

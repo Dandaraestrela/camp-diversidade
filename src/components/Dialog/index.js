@@ -8,14 +8,18 @@ import {
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Product from "../../assets/Product.png";
 
+// este componente é um Dialog que exibe as informações de determinado produto,
+// ele recebe como props o nome, descrição, link, imagem do produto e a função que
+// permite fechar o modal
+
 export const Dialog = (props) => {
   return (
     <StyledDialogBackground>
       <StyledDialogContainer>
         <StyledImage>
-          <img alt="produto especificado" src={Product} />
+          <img alt="produto especificado" src={props.imagem} />
           <StyledExit>
-            <button>
+            <button onClick={props.functionShowModal}>
               <IoIosCloseCircleOutline
                 style={{
                   width: "30px",
@@ -28,13 +32,11 @@ export const Dialog = (props) => {
           </StyledExit>
         </StyledImage>
         <StyledInfo>
-          <h5>Cocoil Leave-in</h5>
+          <h5>{props.nome}n</h5>
           <h6>
-            Recomendado para cabelos descoloridos com tintura e loiros. Fornece
-            a gordura natural que os fios precisam para se manterem hidratados e
-            leves após uma química.
+           {props.descricao}
           </h6>
-          <button>Encontrar este produto</button>
+          <button onClick={() => window.open(props.link)}>Encontrar este produto</button>
         </StyledInfo>
       </StyledDialogContainer>
     </StyledDialogBackground>

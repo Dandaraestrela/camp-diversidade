@@ -8,5 +8,6 @@ export const COLORS = {
     primaryBlue: '#030083',
     secundaryBlue: '#0400BF',
     neutralGrey1: '#222222',
-    neutralGrey3: '#666666'
+    neutralGrey3: '#666666',
+    neutralGrey7: '#888888',
 };

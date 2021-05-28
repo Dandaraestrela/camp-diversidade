@@ -21,6 +21,7 @@ import Ondulado from "../../assets/Ondulado.svg";
 import Cacheado from "../../assets/Cacheados.svg";
 import Crespo from "../../assets/Crespo.svg";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const curvaturas = [
   { label: "1A", imagem: "1ANormal.svg", selected: "1ASelected.svg" },
@@ -181,6 +182,7 @@ const objetivos = [
 ];
 
 export const QuizHair = (props) => {
+  const history = useHistory();
   const [user, setUser] = useContext(Context);
   const { register, handleSubmit, setValue, watch } = useForm({
     defaultValues: {
@@ -309,12 +311,11 @@ export const QuizHair = (props) => {
       );
       resposta = response;
     } catch (e) {
-      console.log(e);
+      console.log("Não conseguimos conexão com o servidor.");
     }
     setUser({ id: resposta.data.id });
     setTypeText(resposta.data.texto.tipoCurvatura);
     setResultText(resposta.data.texto);
-    console.log(resposta.data.id);
   };
 
   return (
@@ -729,7 +730,7 @@ export const QuizHair = (props) => {
             <StyledResultContent>
               <StyledInfo>
                 <h4>
-                  Uau, seu cabelo é <strong>{curvatura}!</strong>
+                  Uau, seu cabelo é <strong>{resultText.tipoCurvatura}!</strong>
                 </h4>
                 <StyledResultText>
                   {Object.keys(resultText).map((key, index) => {
@@ -742,7 +743,7 @@ export const QuizHair = (props) => {
                   })}
                 </StyledResultText>
 
-                <button>Explorar recomendações</button>
+                <button onClick={() => history.push("/Recomendacoes")}>Explorar recomendações</button>
               </StyledInfo>
               <StyledResultImg
                 alt="resultado"

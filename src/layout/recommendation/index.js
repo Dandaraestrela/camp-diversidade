@@ -31,7 +31,6 @@ const filterCategoriesProducts = [
   "+ Volume",
   "- Volume",
   "Hidratação",
-  "Cruelty Free",
   "No Poo/Low Poo",
   "Vegano",
   "Natural",
@@ -71,8 +70,8 @@ export const Recommendation = () => {
     };
   };
   // filtros selecionados
-  const [filtersProducts, setFiltersProducts] = useState([]);
-  const [filtersTips, setFiltersTips] = useState([]);
+  const [filtersProducts, setFiltersProducts] = useState(user.id !== undefined ? ["Recomendações Personalizadas"] : []);
+  const [filtersTips, setFiltersTips] = useState(user.id !== undefined ? ["Recomendações Personalizadas"] : []);
   // respostas das requisições
   const [products, setProducts] = useState([]);
   const [tips, setTips] = useState([]);
@@ -221,6 +220,11 @@ export const Recommendation = () => {
                 />
               );
             })}
+          <p>
+            Se você já fez o nosso quiz, recomendaremos os produtos/dicas de
+            acordo com suas preferências. Para remover esta filtragem,
+            desselecione a categoria "Recomendações Personalizadas".
+          </p>
         </StyledFilters>
         <StyledInfo>
           <StyledInfoType>
@@ -244,6 +248,7 @@ export const Recommendation = () => {
                 return (
                   <ProductCard
                     key={product.id}
+                    id={product.id}
                     imagem={product.imagem}
                     titulo={product.nome}
                     descricao={desc}
