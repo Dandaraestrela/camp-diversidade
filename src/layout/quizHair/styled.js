@@ -28,6 +28,14 @@ export const StyledQuizHWrapper = styled.div`
   strong {
     font-family: "Poppins", sans-serif;
   }
+  @media (max-width: 960px) {
+    padding: 30px 50px;
+    justify-content: center;
+    text-align: center;
+    h1{
+      width: 100%;
+    }
+  }
 `;
 
 export const StyledQuizSteps = styled.div`
@@ -44,6 +52,9 @@ export const StyledQuizSteps = styled.div`
     border-radius: 50%;
     margin-right: 16px;
   }
+  @media (max-width: 1200px) {
+    justify-content: center;
+  }
 `;
 
 export const StyledOptionsWrapper = styled.div`
@@ -52,12 +63,18 @@ export const StyledOptionsWrapper = styled.div`
   input {
     display: none;
   }
+  @media (max-width: 1200px) {
+    justify-content: center;
+  }
 `;
 
 export const StyledOptions = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  @media (max-width: 1200px) {
+    justify-content: center;
+  }
 `;
 
 export const StyledFooterWrapper = styled.div`
@@ -72,7 +89,7 @@ export const StyledFooterWrapper = styled.div`
     justify-content: center;
     background: none;
     border: none;
-    width: 14%;
+    width: fit-content;
     height: auto;
     padding: 8px 24px;
     font-size: 22px;

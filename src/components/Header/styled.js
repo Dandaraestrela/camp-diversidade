@@ -33,7 +33,7 @@ export const StyledTabsWrapper = styled.div`
   button {
     text-decoration: none;
     padding: 4px 8px;
-    margin-right: 2rem;
+    margin-left: 2rem;
     background: none;
     border: none;
     font-size: 16px;

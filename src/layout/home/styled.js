@@ -4,6 +4,10 @@ export const StyledHomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 60px 100px;
+
+  @media (max-width: 960px) {
+    padding: 30px 50px;
+  }
 `;
 
 export const StyledHomeContent = styled.div`
@@ -53,12 +57,16 @@ export const StyledInfo = styled.div`
 `;
 
 export const StyledHomeImg = styled.img`
-    width: 32rem;
-    height: auto;
+    width: auto;
+    height: 80%;
     object-fit: cover;
     position: absolute;
     right: 0;
     bottom: 0;
+    @media (max-width: 1240px) and (min-width: 961px) {
+      width: 40%;
+      height: auto;
+    }
     @media (max-width: 960px) {
       display: none;
     }

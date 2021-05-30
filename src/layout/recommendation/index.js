@@ -71,10 +71,10 @@ export const Recommendation = () => {
   };
   // filtros selecionados
   const [filtersProducts, setFiltersProducts] = useState(
-    user.id !== undefined ? ["Recomendações Personalizadas"] : []
+    user.id !== "undefined" ? ["Recomendações Personalizadas"] : []
   );
   const [filtersTips, setFiltersTips] = useState(
-    user.id !== undefined ? ["Recomendações Personalizadas"] : []
+    user.id !== "undefined" ? ["Recomendações Personalizadas"] : []
   );
   // respostas das requisições
   const [products, setProducts] = useState([]);
@@ -82,12 +82,13 @@ export const Recommendation = () => {
 
   useEffect(() => {
     if (
-      user.id !== undefined &&
+      user.id !== "undefined" &&
       filtersProducts.includes("Recomendações Personalizadas")
     ) {
       // se o user tiver id, faz a busca de acordo com as preferências dele
       //const usuarioLogado = localStorage.getItem("currentUserId");
       setIsFirstLoading(false);
+
       axios
         .get(
           `https://quecabeleiraeessa-com-br.umbler.net/api/v1/produto/usuario/${user.id}`
@@ -152,22 +153,30 @@ export const Recommendation = () => {
     } else {
       axios
         .get(
-          `https://quecabeleiraeessa-com-br.umbler.net/api/v1/dica?lisos=${
+          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/dica?lisos=${
             filtersTips.includes("Liso") ? "true" : "false"
+          }&cacheados=${
+            filtersTips.includes("Cacheado") ? "true" : "false"
+          }&ondulados=${
+            filtersTips.includes("Ondulado") ? "true" : "false"
+          }&crespos=${
+            filtersTips.includes("Crespo") ? "true" : "false"
+          }&transicao=${
+            filtersTips.includes("Transição") ? "true" : "false"
+          }&normal=${
+            filtersTips.includes("Normal") ? "true" : "false"
+          }&oleoso=${filtersTips.includes("Oleoso") ? "true" : "false"}&seco=${
+            filtersTips.includes("Seco") ? "true" : "false"
+          }&misto=${
+            filtersTips.includes("Misto") ? "true" : "false"
+          }&alisamento=${
+            filtersTips.includes("Alisamento") ? "true" : "false"
+          }&tintura=${
+            filtersTips.includes("Tintura") ? "true" : "false"
+          }&descoloracao=${
+            filtersTips.includes("Descoloração") ? "true" : "false"
           }
-            &cacheados=${filtersTips.includes("Cacheado") ? "true" : "false"}
-            &ondulados=${filtersTips.includes("Ondulado") ? "true" : "false"}
-            &crespos=${filtersTips.includes("Crespo") ? "true" : "false"}
-            &transicao=${filtersTips.includes("Transição") ? "true" : "false"}
-            &normal=${filtersTips.includes("Normal") ? "true" : "false"}
-            &oleoso=${filtersTips.includes("Oleoso") ? "true" : "false"}
-            &seco=${filtersTips.includes("Seco") ? "true" : "false"}
-            &misto=${filtersTips.includes("Misto") ? "true" : "false"}
-            &alisamento=${filtersTips.includes("Alisamento") ? "true" : "false"}
-            &tintura=${filtersTips.includes("Tintura") ? "true" : "false"}
-            &descoloracao=${
-              filtersTips.includes("Descoloração") ? "true" : "false"
-            }`
+          `
         )
         .then((response) => {
           setTips(response.data.data);
@@ -202,11 +211,21 @@ export const Recommendation = () => {
                       } else {
                         setFiltersProducts([...filtersProducts, category]);
                       }
+                    } else if (
+                      category === "Recomendações Personalizadas" &&
+                      filtersProducts.includes("Recomendações Personalizadas")
+                    ) {
+                      var cleanArray = [];
+                      setFiltersProducts(cleanArray);
                     } else {
                       setFiltersProducts([category]);
                     }
                   }}
                   selected={filtersProducts.includes(category)}
+                  disabled={
+                    category === "Recomendações Personalizadas" &&
+                    user.id === "undefined"
+                  }
                 />
               );
             })}
@@ -228,18 +247,30 @@ export const Recommendation = () => {
                       } else {
                         setFiltersTips([...filtersTips, tip]);
                       }
+                    } else if (
+                      tip === "Recomendações Personalizadas" &&
+                      filtersTips.includes("Recomendações Personalizadas")
+                    ) {
+                      var cleanArray = [];
+                      setFiltersTips(cleanArray);
                     } else {
                       setFiltersTips([tip]);
                     }
                   }}
                   selected={filtersTips.includes(tip)}
+                  disabled={
+                    tip === "Recomendações Personalizadas" &&
+                    user.id === "undefined"
+                  }
                 />
               );
             })}
           <p>
             Se você já fez o nosso quiz, recomendaremos os produtos/dicas de
-            acordo com suas preferências. Para remover esta filtragem,
-            desselecione a categoria "Recomendações Personalizadas".
+            acordo com suas preferências.
+            <br />
+            Para remover esta filtragem, desselecione a categoria "Recomendações
+            Personalizadas".
           </p>
         </StyledFilters>
         <StyledInfo>
@@ -260,15 +291,15 @@ export const Recommendation = () => {
           <StyledCardsWrapper>
             {infoType === "Produtos" &&
               products?.map((product) => {
-                let desc = product.descricao.substr(0, 100) + "...";
                 return (
                   <ProductCard
                     key={product.id}
                     id={product.id}
                     imagem={product.imagem}
                     titulo={product.nome}
-                    descricao={desc}
+                    descricao={product.descricao}
                     tipo={product.tipo}
+                    link={product.link}
                   />
                 );
               })}

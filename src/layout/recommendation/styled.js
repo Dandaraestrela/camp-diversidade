@@ -25,6 +25,7 @@ export const StyledRecWrapper = styled.div`
     }
   }
   @media (max-width: 960px) {
+    padding: 30px 50px;
     align-items: center;
     justify-content: center;
     h1 {

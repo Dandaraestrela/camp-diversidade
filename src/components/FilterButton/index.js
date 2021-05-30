@@ -13,7 +13,7 @@ export const FilterButton = (props) => {
   };
   return (
     <>
-      <button style={buttonStyled} onClick={props.onClick}>{props.filterLabel}</button>
+      <button style={props.disabled ? {display: "none"} : buttonStyled} disabled={props.disabled} onClick={props.onClick}>{props.filterLabel}</button>
     </>
   );
 };

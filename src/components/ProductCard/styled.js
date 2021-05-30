@@ -11,6 +11,7 @@ export const StyledProductWrapper = styled.div`
   border-radius: 8px;
   margin-right: 12px;
   margin-bottom: 12px;
+  cursor: pointer;
   img {
     width: 146px;
     height: 146px;

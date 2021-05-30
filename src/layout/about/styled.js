@@ -13,6 +13,7 @@ export const StyledAboutWrapper = styled.div`
 
   @media (max-width: 960px) {
     justify-content: center;
+    padding: 30px 50px;
     h1{
       text-align: center;
     }
@@ -40,11 +41,21 @@ export const StyledProjectText = styled.div`
     line-height: 30px;
     color: ${(props) => props.theme.colors.neutralGrey1};
   }
+  @media (max-width: 1200px) {
+    width: 100%;
+    h2{
+      text-align: justify;
+    }
+  }
 `;
 
 export const StyledProjectImg = styled.img`
   max-width: 542px;
   max-height: 512px;
+  @media (max-width: 1200px) {
+    max-width: 100%;
+    height: auto;
+  }
 `;
 
 export const StyledPeopleWrapper = styled.div`
