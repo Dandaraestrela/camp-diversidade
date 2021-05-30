@@ -1,15 +1,18 @@
 import { Link, useHistory } from "react-router-dom";
 
-import { StyledHeaderWrapper, StyledTabsWrapper } from "./styled";
+import {
+  StyledHeaderWrapper,
+  StyledTabsWrapper,
+  StyledButtonResponsive,
+  StyledButtonNormal,
+} from "./styled";
 
 export const Header = (props) => {
   let history = useHistory();
 
   return (
     <StyledHeaderWrapper>
-      <img
-        alt="logomarca"
-        src={"./Logo.svg"}      />
+      <img alt="logomarca" src={"./Logo.svg"} />
       <StyledTabsWrapper>
         <button
           type="button"
@@ -41,7 +44,17 @@ export const Header = (props) => {
         >
           Recomendações
         </button>
-        <button
+        <StyledButtonResponsive
+          type="button"
+          onClick={() => history.push("/Tunel")}
+          style={{
+            color: props.page === "Tunel" ? "#0400BF" : "#222222",
+            fontWeight: props.page === "Tunel" ? "bold" : "normal",
+          }}
+        >
+          Túnel
+        </StyledButtonResponsive>
+        <StyledButtonNormal
           type="button"
           onClick={() => history.push("/Tunel")}
           style={{
@@ -50,7 +63,7 @@ export const Header = (props) => {
           }}
         >
           Túnel do tempo
-        </button>
+        </StyledButtonNormal>
         <button
           type="button"
           onClick={() => history.push("/Sobre")}

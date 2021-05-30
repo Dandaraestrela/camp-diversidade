@@ -153,7 +153,7 @@ export const Recommendation = () => {
     } else {
       axios
         .get(
-          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/dica?lisos=${
+          `https://quecabeleiraeessa-com-br.umbler.net/api/v1/dica?lisos=${
             filtersTips.includes("Liso") ? "true" : "false"
           }&cacheados=${
             filtersTips.includes("Cacheado") ? "true" : "false"
