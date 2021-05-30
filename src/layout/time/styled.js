@@ -48,7 +48,7 @@ export const StyledDecadaImg = styled.img`
   max-height: 512px;
   @media (max-width: 1200px) {
     max-width: 100%;
-    height: auto;
+    max-height: auto;
   }
 `;
 

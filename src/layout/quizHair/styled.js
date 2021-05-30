@@ -163,7 +163,11 @@ export const StyledResultImg = styled.img`
   margin-top: 4rem;
   margin-bottom: 0;
   max-width: 28rem;
-  height: auto;
+  max-height: auto;
   object-fit: cover;
   align-self: center;
+  @media (max-width: 1200px) {
+    max-width: 100%;
+    max-height: auto;
+  }
 `;

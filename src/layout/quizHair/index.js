@@ -161,8 +161,8 @@ const objetivos = [
   },
   {
     label: "Antifrizz",
-    imagem: "antiFrizzNormal.png",
-    selected: "antiFrizzSelected.png",
+    imagem: "antifrizzNormal.svg",
+    selected: "antifrizzSelected.svg",
   },
   {
     label: "Antiquebra",
