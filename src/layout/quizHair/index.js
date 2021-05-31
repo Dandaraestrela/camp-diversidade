@@ -335,6 +335,7 @@ export const QuizHair = (props) => {
         });
       setIsLoaded(true);
     }
+    setIsLoaded(true);
   }, []);
 
   return (
