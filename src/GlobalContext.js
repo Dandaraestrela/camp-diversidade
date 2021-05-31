@@ -7,7 +7,9 @@ const initialState = {
 export const Context = createContext();
 
 export const GlobalContext = ({ children }) => {
-  const [user, setUser] = useState(localStorage.getItem("currentUserId") ? initialState : "undefined");
+  const [user, setUser] = useState(localStorage.getItem("currentUserId") ? initialState : {
+    id: "undefined",
+  });
 
 
   useEffect(() => {
