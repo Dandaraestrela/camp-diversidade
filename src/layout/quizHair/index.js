@@ -328,7 +328,7 @@ export const QuizHair = (props) => {
     if (user.id !== "undefined") {
       axios
         .get(
-          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario/${user.id}`
+          `https://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario/${user.id}`
         )
         .then((response) => {
           setResultText(response.data.texto);
