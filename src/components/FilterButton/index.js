@@ -1,3 +1,6 @@
+// este componente é o botão utilizado na tela Recomendações que permite a
+// filtragem da lista exibida
+
 export const FilterButton = (props) => {
   const buttonStyled = {
     border: props.selected ? "2px solid rgba(81, 78, 222, 0.15)" : "2px solid #FFC9BD",

@@ -1,5 +1,8 @@
 import { StyledCardWrapper, StyledTextWrapper } from './styled';
 
+// este componente exibe uma imagem, descrição e papel de determinada
+// pessoa do grupo que desenvolveu o projeto
+
 export const PeopleCard = (props) => {
     return(
         <StyledCardWrapper>

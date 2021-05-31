@@ -1,3 +1,4 @@
+import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import {
   StyledPaginationWrapper,
   StyledNumberPages,
@@ -6,14 +7,11 @@ import {
   StyledArrowLeftResponsive,
   StyledArrowRight,
 } from "./styled";
-import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 
-/*
-  - O componente Pagination pretende exibir a página atual em que o usuário
-  - se encontra, assim como a quantidade total de páginas e os botões de ações
-  - para passar de página. Suas propriedades definem se o usuário está na primeira
-  - ou última página, alterando a aparencia do botão para indicar sua disponibilidade.
-*/
+// este componente pretende exibir a página atual em que o usuário
+// se encontra, assim como a quantidade total de páginas e os botões de ações
+// para passar de página. Suas propriedades definem se o usuário está na primeira
+// ou última página, alterando a aparencia do botão para indicar sua disponibilidade.
 
 export const Pagination = (props) => {
   return (

@@ -7,6 +7,9 @@ import {
   StyledButtonNormal,
 } from "./styled";
 
+// este é o componente que renderiza o menu superior em todas as páginas da aplicação
+// ele dá acesso às diferentes páginas
+
 export const Header = (props) => {
   let history = useHistory();
 

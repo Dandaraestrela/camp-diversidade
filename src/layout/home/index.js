@@ -1,7 +1,10 @@
-import { StyledHomeWrapper, StyledHomeContent, StyledInfo, StyledHomeImg } from "./styled";
 import { useHistory } from "react-router-dom";
+import { StyledHomeWrapper, StyledHomeContent, StyledInfo, StyledHomeImg } from "./styled";
 import { Header } from "../../components/Header";
 import Principal from '../../assets/Principal.svg';
+
+// esta é a primeira tela da aplicação, que dá o contexto sobre o tema e leva o usuário
+// à realização do quiz
 
 export const Home = () => {
   let history = useHistory();

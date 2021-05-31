@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { ImArrowRight2 } from "react-icons/im";
 import { ImArrowLeft2 } from "react-icons/im";
@@ -14,7 +15,11 @@ import {
 } from "./styled";
 import { Header } from "../../components/Header";
 import Loading from "../../assets/Loading.gif";
-import axios from "axios";
+
+
+// nesta página, o usuário tem acesso à uma linha do tempo da indústria de beleza, com
+// informações e imagens de cada decada desde 1910 até 2020, as abas de cada década foram
+// feitas com o componente Tabs
 
 export const Time = () => {
   const [tabIndex, setTabIndex] = useState(0);

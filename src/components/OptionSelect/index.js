@@ -1,5 +1,9 @@
 import { StyledSelectorWrapper, StyledCategory, StyledImage } from "./styled";
 
+// este componente é exibido no quiz para ser selecionado pelo usuário e
+// recebe a imagem (selecionada ou não) e nome (option) como props, além
+// das funções de clique
+
 export const OptionSelect = (props) => {
   return (
     <>

@@ -49,8 +49,8 @@ export const StyledQuizSteps = styled.div`
     cursor: pointer;
     width: 16px;
     height: 16px;
-    max-width: 16px;
-    max-height: 16px;
+    min-width: 16px;
+    min-height: 16px;
     border-radius: 50%;
     margin-right: 16px;
   }

@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useHistory } from "react-router";
 import { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ImArrowRight2 } from "react-icons/im";
@@ -23,8 +25,14 @@ import Cacheado from "../../assets/Cacheados.svg";
 import Crespo from "../../assets/Crespo.svg";
 import Vector from '../../assets/Vector.svg';
 import Loading from "../../assets/Loading.gif";
-import axios from "axios";
-import { useHistory } from "react-router";
+
+// esta página contém a funcionalidade principal da aplicação. O quiz pretende mapear a situação
+// atual do cabelo do usuário, suas preferências e desejos também para que possam ser recomendados
+// os produtos e dicas certas para o mesmo. Há o acesso à API em dois momentos: no momento em que o
+// quiz é finalizado, há o envio de informações e o recebimento de um ID e da resposta do quiz; e o
+// outro acesso é quando o usuário já fez o quiz e visualiza apenas o resultado do quiz já feito e o
+// acesso a um botão que permite que o quiz seja refeito. Nesta página há o controle manual dos passos
+// do quiz.
 
 const curvaturas = [
   { label: "1A", imagem: "1ANormal.svg", selected: "1ASelected.svg" },
@@ -198,60 +206,49 @@ export const QuizHair = (props) => {
       objetivos: [],
     },
   });
+  // se o usuário já tiver feito o quiz uma vez, vai direto para a tela de resultado
   const [currentStep, setCurrentStep] = useState(
     user.id === "undefined" ? "Curvatura" : "Resultado"
   );
-  const [typeText, setTypeText] = useState("");
   const [resultText, setResultText] = useState([]);
-  const [curvatura, setCurvatura] = useState("");
   const watchFields = watch();
 
   function parseCurvatura(curvaturaSelecionada) {
     switch (curvaturaSelecionada) {
       case "1A":
-        setCurvatura("Liso");
         return 0;
+
       case "1B":
-        setCurvatura("Liso");
         return 0;
+
       case "1C":
-        setCurvatura("Liso");
         return 0;
 
       case "2A":
-        setCurvatura("Ondulado");
         return 1;
 
       case "2B":
-        setCurvatura("Ondulado");
         return 2;
 
       case "2C":
-        setCurvatura("Ondulado");
         return 3;
 
       case "3A":
-        setCurvatura("Cacheado");
         return 4;
 
       case "3B":
-        setCurvatura("Cacheado");
         return 5;
 
       case "3C":
-        setCurvatura("Cacheado");
         return 6;
 
       case "4A":
-        setCurvatura("Crespo");
         return 7;
 
       case "4B":
-        setCurvatura("Crespo");
         return 8;
 
       case "4C":
-        setCurvatura("Crespo");
         return 9;
 
       default:
@@ -320,13 +317,11 @@ export const QuizHair = (props) => {
       console.log("Não conseguimos conexão com o servidor.");
     }
     setUser({ id: resposta.data.id });
-    setTypeText(resposta.data.texto.tipoCurvatura);
     setResultText(resposta.data.texto);
   };
 
   useEffect(() => {
     if (user.id !== "undefined") {
-      console.log("entrou como sem ser undefined")
       axios
         .get(
           `https://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario/${user.id}`
@@ -358,6 +353,7 @@ export const QuizHair = (props) => {
                     currentStep === "Curvatura" ? "#514EDE" : "#FFC0B2",
                 }}
                 onClick={() => setCurrentStep("Curvatura")}
+                // verifica o length para quando uma categoria é selecionada e desselecionada
                 disabled={
                   !watchFields.curvatura || watchFields.curvatura.length === 0
                 }
@@ -420,6 +416,7 @@ export const QuizHair = (props) => {
                 }
               />
             </StyledQuizSteps>
+            {/* comentários para input único */}
             {currentStep === "Curvatura" && (
               <StyledOptionsWrapper>
                 <h2>Qual a curvatura do seu cabelo?</h2>
@@ -430,7 +427,9 @@ export const QuizHair = (props) => {
                       option={tipoCurvatura.label}
                       image={tipoCurvatura.imagem}
                       imageSelected={tipoCurvatura.selected}
+                      // primeiro indica qual dos campos do formulario será alterado, e depois com qual valor
                       onClick={() => setValue("curvatura", tipoCurvatura.label)}
+                      // marca como selecionado se ele tiver sido clicado
                       selected={watchFields.curvatura === tipoCurvatura.label}
                     />
                   ))}
@@ -487,6 +486,7 @@ export const QuizHair = (props) => {
                 </StyledFooterWrapper>
               </StyledOptionsWrapper>
             )}
+            {/* comentários para input múltiplo */}
             {currentStep === "Químicas" && (
               <StyledOptionsWrapper>
                 <h2>Seu cabelo tem alguma dessas químicas?</h2>
@@ -504,10 +504,11 @@ export const QuizHair = (props) => {
                           if (tipoQuimicas.label === "Nenhuma Química") {
                             setValue("quimicas", tipoQuimicas.label);
                           } else {
+                            // verifica se o item clicado existe no array e remove ou adiciona
                             if (
                               watchFields.quimicas.includes(tipoQuimicas.label)
                             ) {
-                              // verifica se o item clicado existe no array e remove ou adiciona
+                              // se já incluir, filtra e deixa passar tudo o que é diferente do selecionado
                               setValue(
                                 "quimicas",
                                 watchFields.quimicas.filter(
@@ -515,6 +516,7 @@ export const QuizHair = (props) => {
                                 )
                               );
                             } else {
+                              // se não incluir, adiciona ao array de valores já existente
                               setValue("quimicas", [
                                 ...watchFields.quimicas,
                                 tipoQuimicas.label,
@@ -522,6 +524,7 @@ export const QuizHair = (props) => {
                             }
                           }
                         } else {
+                          // se array ainda não existir, adiciona o primeiro valor ao mesmo
                           setValue("quimicas", [tipoQuimicas.label]);
                         }
                       }}
@@ -754,6 +757,8 @@ export const QuizHair = (props) => {
                   Uau, seu cabelo é{" "}
                   <strong>{resultText.tipoCurvatura}!</strong>
                 </h4>
+                {/* itera pelo objeto recebido da api, desconsiderando a primeira informação, que
+                      é exibida de outra forma previamente */}
                 <StyledResultText>
                   {Object.keys(resultText).map((key, index) => {
                     if (index === 0) {

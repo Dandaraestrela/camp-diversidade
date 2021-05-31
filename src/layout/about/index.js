@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import {
@@ -19,8 +18,10 @@ import Henrique from "../../assets/Henrique.png";
 import Rodrigo from "../../assets/Rodrigo.png";
 import Sarah from "../../assets/Sarah.png";
 
-const BarbaraDescription =
-  "Tenho 21 anos e estudo Engenharia Química, na UFSM, no Rio Grande do Sul. Meu cabelo é cacheado e demorei muuuito até aceitar minha própria pluralidade. Fico imensamente feliz em poder contribuir com um projeto que irá ajudar muitas outras pessoas que tenham uma história similar a minha!";
+// nesta tela o usuário poderá visualizar informações gerais sobre a aplicação, sobre a Ioasys e sobre
+// a equipe que desenvolveu.
+
+const BarbaraDescription = "Tenho 21 anos e estudo Engenharia Química, na UFSM, no Rio Grande do Sul. Meu cabelo é cacheado e demorei muuuito até aceitar minha própria pluralidade. Fico imensamente feliz em poder contribuir com um projeto que irá ajudar muitas outras pessoas que tenham uma história similar a minha!";
 
 const DandaraDescription = "Oi! Meu nome é Dandara Estrela, faço Ciência da Computação na UFPB e sempre fui apaixonada por tecnologia. Hoje meu coração pertence ao desenvolvimento front-end e ao design, sempre tentando criar a melhor experiência de usabilidade para o usuário.";
 
@@ -53,7 +54,7 @@ export const About = () => {
   return (
     <StyledAboutWrapper>
       <Header page="Sobre" />
-      <h1>{tabIndex == 0 ? "O projeto" : "Quem projetou"}</h1>
+      <h1>{tabIndex === 0 ? "O projeto" : "Quem projetou"}</h1>
       <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
         <TabList
           style={{
@@ -74,7 +75,7 @@ export const About = () => {
           <StyledProjectWrapper>
             <StyledProjectText>
               <h2>
-                Lisão, cachinhos, ondas... As cabeleiras espalhas Brasil são tão
+                Lisão, cachinhos, ondas... As cabeleiras espalhadas pelo Brasil são tão
                 distintas e diversas! É incrível pensar o quanto a diversidade
                 capilar está enraizada na nossa cultura. Ao mesmo tempo, pode
                 ser um pouco complexo identificar qual o tipo da sua cabeleira.

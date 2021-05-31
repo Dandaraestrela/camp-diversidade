@@ -3,7 +3,7 @@ import {
     StyledTipInfo,
   } from "./styled";
   
-  // este componente rece as props img, nome, descricao, tipo
+  // este componente exibe uma dica e recebe as props nome, descricao
   
   export const TipCard = (props) => {
     return (

@@ -6,7 +6,8 @@ import {
 import { useState } from "react";
 import { Dialog } from "../Dialog";
 
-// este componente rece as props img, nome, descricao, tipo e link de determinado produto
+// este componente exibe um produto e faz a chamada para o modal do produto,
+// alem de receber as props img, nome, descricao, tipo e link de determinado produto
 
 export const ProductCard = (props) => {
   let descricaoCard = props.descricao.substr(0, 100) + "...";

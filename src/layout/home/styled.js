@@ -53,6 +53,12 @@ export const StyledInfo = styled.div`
   @media (max-width: 960px) {
       width:100%;
       align-items: center;
+      h1{
+        text-align: center;
+      }
+      h2{
+        text-align: justify;
+      }
     }
 `;
 

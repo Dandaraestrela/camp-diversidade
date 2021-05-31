@@ -18,6 +18,12 @@ import { Pagination } from "../../components/Pagination";
 import Loading from "../../assets/Loading.gif";
 import Dica from "../../assets/Dica.png";
 
+// nesta tela o usuário tem acesso à recomendações (personalizadas ou não) de produtos e dicas para
+// manter a saúde do cabelo. Ela contém uma listagem dos produtos ou dicas e uma listagem de filtros
+// clicáveis que fazem a requisição à api para determinada filtragem, além disso a lista de produtos
+// permite a visualização dos mesmos através de um modal (que também contém o link para compra do produto).
+// Nesta listagem há paginação.
+
 const filterCategoriesProducts = [
   "Recomendações Personalizadas",
   "Liso",
