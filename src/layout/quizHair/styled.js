@@ -49,6 +49,8 @@ export const StyledQuizSteps = styled.div`
     cursor: pointer;
     width: 16px;
     height: 16px;
+    max-width: 16px;
+    max-height: 16px;
     border-radius: 50%;
     margin-right: 16px;
   }
@@ -103,6 +105,9 @@ export const StyledResultContent = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  @media (max-width: 1200px) {
+    align-items: center;
+  }
 `;
 
 export const StyledInfo = styled.div`
@@ -111,7 +116,7 @@ export const StyledInfo = styled.div`
   justify-content: space-around;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 30rem;
+  max-width: 34rem;
 
   h4 {
     font-family: "Poppins", sans-serif;
@@ -136,12 +141,18 @@ export const StyledInfo = styled.div`
     color: white;
     font-size: 22px;
   }
+  @media (max-width: 1200px) {
+    align-items: center;
+    h4{
+      margin-bottom: 12px;
+    }
+  }
 `;
 
 export const StyledResultText = styled.div`
   display: flex;
   flex-direction: column;
-  height: 280px;
+  height: 300px;
   overflow-y: auto;
   ::-webkit-scrollbar {
     background-color: #f4f4f4;
@@ -154,8 +165,15 @@ export const StyledResultText = styled.div`
   }
   h5 {
     font-weight: normal;
-    font-size: 16px;
+    font-size: 20px;
     margin: 0;
+    margin-bottom: 4px;
+    margin-right: 12px;
+    line-height: 30px;
+    text-align: justify;
+  }
+  @media (max-width: 1200px) {
+    height: 400px;
   }
 `;
 
@@ -171,3 +189,10 @@ export const StyledResultImg = styled.img`
     max-height: auto;
   }
 `;
+
+export const StyledLoading = styled.img`
+  width: 4%;
+  height: auto;
+  align-self: center;
+`;
+

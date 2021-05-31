@@ -33,7 +33,7 @@ export const StyledRecWrapper = styled.div`
       text-align: center;
     }
     p{
-      text-align: center;
+      text-align: justify;
     }
   }
 `;

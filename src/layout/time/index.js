@@ -10,21 +10,25 @@ import {
   StyledDecadaText,
   StyledDecadaImg,
   StyledFooterWrapper,
+  StyledLoading
 } from "./styled";
 import { Header } from "../../components/Header";
-import { Dialog } from "../../components/Dialog";
+import Loading from "../../assets/Loading.gif";
 import axios from "axios";
 
 export const Time = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [decadasInfo, setDecadasInfo] = useState([]);
+  const [isFirstLoading, setIsFirstLoading] = useState(true);
 
   useEffect(() => {
+    setIsFirstLoading(true);
     axios
       .get("https://quecabeleiraeessa-com-br.umbler.net/api/v1/decada")
       .then((response) => {
         setDecadasInfo(response.data.data);
         console.log(response.data.data);
+        setIsFirstLoading(false);
       })
       .catch((e) => console.log("A requisição do túnel do tempo falhou"));
   }, []);
@@ -120,12 +124,16 @@ export const Time = () => {
           </TabList>
 
           <TabPanel>
+          {isFirstLoading ? (
+            <StyledLoading src={Loading} />
+          ) :
             <StyledDecadaWrapper>
               <StyledDecadaText>
                 <h2>{decadasInfo[0].descricao}</h2>
               </StyledDecadaText>
               <StyledDecadaImg src={decadasInfo[0].imagemWeb} />
             </StyledDecadaWrapper>
+}
           </TabPanel>
 
           <TabPanel>
@@ -238,14 +246,14 @@ export const Time = () => {
         <button
           type="button"
           onClick={() => previousDecada()}
-          style={tabIndex === 0 ? {opacity: "0%"} : {} }
+          style={tabIndex === 0 ? {opacity: "0%", cursor: "inherit"} : {} }
         >
           <ImArrowLeft2 style={{ marginLeft: "4px", minWidth: "22px" }} />
           Anterior
         </button>
         <button
           type="button"
-          style={tabIndex === 11 ? {opacity: "0%"}: {} }
+          style={tabIndex === 11 ? {opacity: "0%", cursor: "inherit"}: {} }
           onClick={() => nextDecada()}
         >
           Próximo

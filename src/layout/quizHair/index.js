@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ImArrowRight2 } from "react-icons/im";
 import { IoArrowForwardCircle } from "react-icons/io5";
@@ -12,6 +12,7 @@ import {
   StyledResultContent,
   StyledResultText,
   StyledResultImg,
+  StyledLoading,
 } from "./styled";
 import { Context } from "../../GlobalContext";
 import { Header } from "../../components/Header";
@@ -20,6 +21,8 @@ import Liso from "../../assets/Liso.svg";
 import Ondulado from "../../assets/Ondulado.svg";
 import Cacheado from "../../assets/Cacheados.svg";
 import Crespo from "../../assets/Crespo.svg";
+import Vector from '../../assets/Vector.svg';
+import Loading from "../../assets/Loading.gif";
 import axios from "axios";
 import { useHistory } from "react-router";
 
@@ -184,6 +187,7 @@ const objetivos = [
 export const QuizHair = (props) => {
   const history = useHistory();
   const [user, setUser] = useContext(Context);
+  const [isLoaded, setIsLoaded] = useState(false);
   const { register, handleSubmit, setValue, watch } = useForm({
     defaultValues: {
       curvatura: "",
@@ -194,7 +198,9 @@ export const QuizHair = (props) => {
       objetivos: [],
     },
   });
-  const [currentStep, setCurrentStep] = useState("Curvatura");
+  const [currentStep, setCurrentStep] = useState(
+    user.id === "undefined" ? "Curvatura" : "Resultado"
+  );
   const [typeText, setTypeText] = useState("");
   const [resultText, setResultText] = useState([]);
   const [curvatura, setCurvatura] = useState("");
@@ -317,6 +323,19 @@ export const QuizHair = (props) => {
     setTypeText(resposta.data.texto.tipoCurvatura);
     setResultText(resposta.data.texto);
   };
+
+  useEffect(() => {
+    if (user.id !== "undefined") {
+      axios
+        .get(
+          `http://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario/${user.id}`
+        )
+        .then((response) => {
+          setResultText(response.data.texto);
+        });
+      setIsLoaded(true);
+    }
+  }, []);
 
   return (
     <>
@@ -725,44 +744,64 @@ export const QuizHair = (props) => {
             )}
           </form>
         )}
-        {currentStep === "Resultado" && (
-          <>
+        {currentStep === "Resultado" &&
+          (isLoaded ? ( <>
             <StyledResultContent>
               <StyledInfo>
                 <h4>
-                  Uau, seu cabelo é <strong>{resultText.tipoCurvatura}!</strong>
+                  Uau, seu cabelo é{" "}
+                  <strong>{resultText.tipoCurvatura}!</strong>
                 </h4>
                 <StyledResultText>
                   {Object.keys(resultText).map((key, index) => {
                     if (index === 0) {
                     } else {
                       if (resultText[key] !== "") {
-                        return <h5 key={key}>{resultText[key]}</h5>;
+                        return (
+                          <h5 key={key}>
+                            {resultText[key]}
+                            <br />
+                          </h5>
+                        );
                       }
                     }
                   })}
                 </StyledResultText>
-
-                <button onClick={() => history.push("/Recomendacoes")}>Explorar recomendações</button>
+                <button onClick={() => history.push("/Recomendacoes")}>
+                  Explorar recomendações
+                </button>
+                <button
+                  style={{
+                    background: "none",
+                    fontSize: "18px",
+                    color: "#514EDE",
+                    padding: "0px",
+                    marginTop: "12px",
+                  }}
+                  onClick={() => setCurrentStep("Curvatura")}
+                >
+                  Refazer quiz
+                </button>
               </StyledInfo>
               <StyledResultImg
                 alt="resultado"
                 src={
-                  curvatura === "Liso"
+                  resultText.tipoCurvatura === "liso"
                     ? Liso
-                    : curvatura === "Ondulado"
+                    : resultText.tipoCurvatura === "ondulado"
                     ? Ondulado
-                    : curvatura === "Cacheado"
+                    : resultText.tipoCurvatura === "cacheado"
                     ? Cacheado
-                    : Crespo
+                    : resultText.tipoCurvatura === "crespo"
+                    ? Crespo
+                    : Vector
                 }
               />
             </StyledResultContent>
             <StyledFooterWrapper>
               <h3>{currentStep}</h3>
             </StyledFooterWrapper>
-          </>
-        )}
+          </>) : (<StyledLoading src={Loading} /> ))}
       </StyledQuizHWrapper>
     </>
   );

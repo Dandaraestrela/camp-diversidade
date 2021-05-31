@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { StyledSelectorWrapper, StyledCategory, StyledImage } from "./styled";
 
 export const OptionSelect = (props) => {

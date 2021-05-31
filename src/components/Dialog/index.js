@@ -6,7 +6,6 @@ import {
   StyledInfo,
 } from "./styled";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import Product from "../../assets/Product.png";
 
 // este componente é um Dialog que exibe as informações de determinado produto,
 // ele recebe como props o nome, descrição, link, imagem do produto e a função que

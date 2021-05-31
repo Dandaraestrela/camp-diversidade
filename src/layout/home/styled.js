@@ -33,7 +33,7 @@ export const StyledInfo = styled.div`
   }
   h2 {
     font-weight: normal;
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 0;
   }
   button {

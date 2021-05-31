@@ -36,7 +36,7 @@ export const StyledProjectText = styled.div`
   flex-direction: column;
   width: 50%;
   h2 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: normal;
     line-height: 30px;
     color: ${(props) => props.theme.colors.neutralGrey1};
