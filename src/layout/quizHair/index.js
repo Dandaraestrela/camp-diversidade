@@ -326,6 +326,7 @@ export const QuizHair = (props) => {
 
   useEffect(() => {
     if (user.id !== "undefined") {
+      console.log("entrou como sem ser undefined")
       axios
         .get(
           `https://quecabeleiraeessa-com-br.umbler.net/api/v1/usuario/${user.id}`
