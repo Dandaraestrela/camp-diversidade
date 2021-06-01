@@ -12,23 +12,28 @@ export const StyledPaginationWrapper = styled.div`
   } ;
 `;
 
-export const StyledNumberPages = styled.h3`
+export const StyledNumberPages = styled.div`
+display: inline;
+h3{
   display: inline;
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
   line-height: 20px;
-  color: #333333;
+  color: #333333;}
 `;
 
-export const StyledTitlePages = styled.h3`
-  display: inline;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 20px;
-  color: #333333;
-  margin-left: 8px;
+export const StyledTitlePages = styled.div`
+display: inline;
+  h3 {
+    display: inline;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    color: #333333;
+    margin-left: 8px;
+  }
 `;
 
 export const StyledArrowLeft = styled.button`

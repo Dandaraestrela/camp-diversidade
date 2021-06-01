@@ -22,7 +22,7 @@ export const StyledInfo = styled.div`
   justify-content: center;
   margin-top: 0;
   width: 50%;
-  z-index: 1;
+
   h1 {
     font-family: "Poppins", sans-serif;
     font-weight: bold;
@@ -51,29 +51,33 @@ export const StyledInfo = styled.div`
     font-size: 22px;
   }
   @media (max-width: 960px) {
-      width:100%;
-      align-items: center;
-      h1{
-        text-align: center;
-      }
-      h2{
-        text-align: justify;
-      }
+    width: 100%;
+    align-items: center;
+    h1 {
+      text-align: center;
     }
+    h2 {
+      text-align: justify;
+    }
+  }
 `;
 
 export const StyledHomeImg = styled.img`
+  width: auto;
+  height: 80%;
+  object-fit: cover;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  @media (max-width: 1240px) and (min-width: 961px) {
+    width: 40%;
+    height: auto;
+  }
+  @media (max-width: 960px) {
+    display: none;
+  }
+  @media (max-height: 640px) {
     width: auto;
     height: 80%;
-    object-fit: cover;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    @media (max-width: 1240px) and (min-width: 961px) {
-      width: 40%;
-      height: auto;
-    }
-    @media (max-width: 960px) {
-      display: none;
-    }
+  }
 `;

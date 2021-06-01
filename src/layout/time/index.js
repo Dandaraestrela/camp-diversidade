@@ -32,7 +32,6 @@ export const Time = () => {
       .get("https://quecabeleiraeessa-com-br.umbler.net/api/v1/decada")
       .then((response) => {
         setDecadasInfo(response.data.data);
-        console.log(response.data.data);
         setIsFirstLoading(false);
       })
       .catch((e) => console.log("A requisição do túnel do tempo falhou"));

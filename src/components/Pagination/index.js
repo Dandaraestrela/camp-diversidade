@@ -24,8 +24,14 @@ export const Pagination = (props) => {
         <BsChevronLeft />
       </StyledArrowLeftResponsive>
       <StyledTitlePages>
-        Página <StyledNumberPages>{props.currentPage}</StyledNumberPages> de{" "}
-        <StyledNumberPages>{props.pageQuantity}</StyledNumberPages>
+        <h3>Página </h3>{" "}
+        <StyledNumberPages>
+          <h3>{props.currentPage}</h3>
+        </StyledNumberPages>
+        <h3>de </h3>
+        <StyledNumberPages>
+          <h3>{props.pageQuantity}</h3>
+        </StyledNumberPages>
       </StyledTitlePages>
       <StyledArrowLeft
         first={props.first}
